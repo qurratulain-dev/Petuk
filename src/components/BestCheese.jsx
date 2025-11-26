@@ -11,7 +11,7 @@ const BestCheese = () => {
                 <h2 className='text-3xl font-bold'> Best Cheese Pizza available in<br />your town by Petuk </h2>
                 <p className=' my-5'> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, praesentium. Veniam ullam iure nisi porro. </p>
                 <button className='px-4 py-2 text-sm bg-orange-500 text-white rounded-full'>
-                    Visit restaurants</button>
+                    Visit Shop</button>
             </div>
         </section>
     )

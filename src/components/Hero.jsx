@@ -7,13 +7,13 @@ import playStore from '../assets/play_store.png'
 const Hero = () => {
     return (
         <section className='bg-amber-50'>
-            <div className='max-w-6xl mx-auto px-5 py-10 pt-[15vh] flex'>
+            <div className='max-w-6xl mx-auto px-5 py-10 pt-[19vh] flex '>
                 <div className=' flex flex-col justify-center items-start flex-1'>
                     <div className='flex justify-center items-center space-x-1 bg-orange-200 px-2 py-1 rounded-lg w-48 mb-5'>
                         <TbTruckDelivery size={24} color='coral' />
                         <p className='text-[10px] text-zinc-500'>Faster Delivery Guaranteed</p>
                     </div>
-                    <h2 className='text-6xl font-bold text-zinc-800 leading-16'>You would Love <br /> our <span className='text-orange-500'>Hot Pizza</span> </h2>
+                    <h2 className='lg:text-6xl text-5xl font-bold text-zinc-800 lg:leading-16 leading-12'>You would Love <br /> our <span className='text-orange-500'>Hot Pizza</span> </h2>
                     <p className='text-sm text-zinc-500 my-7 w-4xs'>Get 10% instant off for all order and $200 signup bonus <br /> today forn new registration!</p>
                     <div className='flex justify-center items-center gap-2'>
                         {
@@ -29,7 +29,7 @@ const Hero = () => {
                         }
                     </div>
                 </div>
-                <div className='flex-1 flex justify-end  lg:visible'>
+                <div className='flex-1 lg:flex justify-end hidden '>
                     <img src={hero} alt="Pizza pic" className='w-[50vw] h-[80vh]' />
                 </div>
             </div>

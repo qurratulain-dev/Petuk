@@ -65,7 +65,7 @@ const WeeklyPizzaCards = () => {
                         1024: { slidesPerView: 4 }
                     }} >
                     {pizzas.map(pizza => (
-                        <SwiperSlide key={pizza.id} className="flex justify-center mt-10">
+                        <SwiperSlide key={pizza.id} className="flex justify-center mt-10 py-10 ">
                         <div >
                             <WeeklyPizzaCard
                                 name={pizza.name}
@@ -75,9 +75,7 @@ const WeeklyPizzaCards = () => {
                             />
                         </div>
                     </SwiperSlide>
-                    
                     ))}
-
                     {/* Custom Arrows */}
                     <div className="custom-prev absolute top-[40%] -right-5 -left-3 z-10 transform -translate-y-1/2 w-10 h-10 bg-white border border-orange-500 text-orange-500 shadow-md flex items-center justify-center rounded-full cursor-pointer hover:bg-orange-500 hover:text-white">
                         &#10094;

@@ -7,7 +7,6 @@ const WeeklyPizzaCard = ({name,description,price,image}) => {
   const toggleWishlist = () => {
     setWishlisted(!wishlisted);
   };
-
   return (
     <div className="relative max-w-xs bg-white shadow-lg rounded-xl overflow-hidden px-4 py-5 flex flex-col items-center gap-3 hover:shadow-xl transition">
       <div

@@ -6,7 +6,7 @@ import FreshPizza from '../components/FreshPizza/FreshPizza'
 import FastestDelivery from '../components/FastestDeliver/FastestDelivery'
 import BestCheese from '../components/BestCheese'
 import WeHate from '../components/WeHate'
-import LatestNews from '../components/LatestNews/LatestNews'
+import LatestNews from '../components/LatestNews_Blog/LatestNews'
 import JoinPartner from '../components/JoinPartner'
 import Subscribe from '../components/Subscribe'
 

@@ -8,16 +8,16 @@ import { FiLoader } from 'react-icons/fi'
 const LatestNews = () => {
     return (
         <section className='bg-amber-50 '>
-            <div className='max-w-6xl mx-auto px-5 py-20 flex flex-col justify-center items-center'>
+            <div className='max-w-6xl mx-auto px-5 py-10 flex flex-col justify-center items-center'>
                 <Heading title={"Latest News"} />
-                <div className='flex justify-center items-center gap-5 mt-10 text-white'>
+                <div className='flex justify-center items-center gap-5 mt-10 text-white  flex-wrap'>
                     {
                         newsCardArray.map((item) => (
-                            <div className='w-[200px] h-[300px] relative '>
+                            <div className='w-[250px] h-[300px] relative mb-20'>
                                 <div >
                                     <img src={nature} alt="" className='rounded-xl object-cover'/>
                                 </div>
-                                <div className='absolute bottom-8'>
+                                <div className='absolute bottom-0'>
                                     <div key={item.id} className='p-3'>
                                         <div className='flex gap-2'>
                                             <img src={item.client} alt="client" className='h-5 w-5 rounded-full z-10 bg-orange-500' />
@@ -31,7 +31,7 @@ const LatestNews = () => {
                         ))
                     }
                 </div>
-                <button className='text-sm text-white bg-orange-500 px-4 py-2 rounded-full font-semibold flex justify-center items-center gap-2 mt-5'><FiLoader /> Load more posts</button>
+                <button className='text-sm text-white bg-orange-500 px-4 py-2 rounded-full font-semibold flex justify-center items-center gap-2 '><FiLoader /> Load more posts</button>
 
             </div>
         </section>

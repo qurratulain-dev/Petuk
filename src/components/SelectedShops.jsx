@@ -5,7 +5,7 @@ import hero from '../assets/hero.webp'
 const SelectedShops = () => {
   return (
     <section className='bg-[#fcfcfc]'>
-      <div className='max-w-6xl mx-auto px-10 py-5 '>
+      <div className='max-w-6xl mx-auto px-10 py-10 '>
         <div className='flex justify-center items-center bg-orange-100 gap-5 my-10 p-2 rounded-lg border border-dashed border-orange-500'>
           <div className='flex gap-1 text-orange-500 font-bold text-2xl'>
             <div className='text transform -rotate-90'>
@@ -15,19 +15,18 @@ const SelectedShops = () => {
           </div>
           <p className='text-zinc-500 text-sm'>Get $50 discount from our selected shops</p>
         </div>
-        <div className='flex justify-center items-center gap-10 mt-20 flex-col'>
+        <div className='flex flex-col md:flex-row justify-center items-center gap-10 mt-20'>
           {
             selectedShopsArray.map((item) => (
-              <div className='bg-orange-50 border border-dashed border-orange-500 flex-1 rounded-lg'>
+              <div className='bg-orange-50 border border-dashed border-orange-500 flex-1 rounded-lg mt-5'>
                 <div className='flex justify-end items-start  overflow-hidden rounded-tr-lg'>
-                  <img src={item.image} alt={item.name} className='w-56 h-[150px] lg:w-[300px] rounded-tr-lg relative  -top-2 lg:-top-1 right-0 object-cover transition-transform duration-300 hover:scale-105' />
+                  <img src={item.image} alt={item.name} className='w-56 h-40 lg:w-[300px] rounded-tr-lg relative  -top-2 lg:top-0 -right-1 object-cover transition-transform duration-300 hover:scale-105' />
                 </div>
                 <div className='flex flex-col px-10 -pt-10'>
                   <p className='text-3xl text-orange-500 font-bold'>{item.date}</p>
                   <h2 className='text-2xl text-zinc-800 font-bold my-2'>{item.name}</h2>
                   <p className='text-sm text-zinc-500 font-light mb-10'>{item.para}</p>
                 </div>
-
               </div>
             ))
           }

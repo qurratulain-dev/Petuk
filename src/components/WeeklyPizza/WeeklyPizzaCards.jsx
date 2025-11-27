@@ -53,7 +53,6 @@ const WeeklyPizzaCards = () => {
                 <Swiper
                     modules={[Navigation]}
                     spaceBetween={20}
-                    slidesPerView={4}
                     loop={true}
                     navigation={{
                         nextEl: '.custom-next',
@@ -63,24 +62,27 @@ const WeeklyPizzaCards = () => {
                         0: { slidesPerView: 1 },
                         640: { slidesPerView: 2 },
                         1024: { slidesPerView: 4 }
-                    }} >
+
+                    }}>
                     {pizzas.map(pizza => (
-                        <SwiperSlide key={pizza.id} className="flex justify-center mt-10 py-10 ">
-                        <div >
-                            <WeeklyPizzaCard
-                                name={pizza.name}
-                                description={pizza.description}
-                                price={pizza.price}
-                                image={pizza.image}
-                            />
+                        <SwiperSlide key={pizza.id} className="flex justify-center py-10 w-full">
+                        <div className="relative left-1/2 transform -translate-x-1/2 mr-44 sm:mr-0">
+                          <WeeklyPizzaCard
+                            name={pizza.name}
+                            description={pizza.description}
+                            price={pizza.price}
+                            image={pizza.image}
+                          />
                         </div>
-                    </SwiperSlide>
+                      </SwiperSlide>
+                      
                     ))}
+
                     {/* Custom Arrows */}
-                    <div className="custom-prev absolute top-[40%] -right-5 -left-3 z-10 transform -translate-y-1/2 w-10 h-10 bg-white border border-orange-500 text-orange-500 shadow-md flex items-center justify-center rounded-full cursor-pointer hover:bg-orange-500 hover:text-white">
+                    <div className="custom-prev absolute top-[40%] left-0 z-10 w-10 h-10 bg-white border border-orange-500 text-orange-500 shadow-md flex items-center justify-center rounded-full cursor-pointer hover:bg-orange-500 hover:text-white">
                         &#10094;
                     </div>
-                    <div className="custom-next absolute top-[40%] -right-3 z-10 transform -translate-y-1/2 w-10 h-10 bg-white border border-orange-500 text-orange-500 shadow-md flex items-center justify-center rounded-full cursor-pointer hover:bg-orange-500 hover:text-white">
+                    <div className="custom-next absolute top-[40%] right-0 z-10 w-10 h-10 bg-white border border-orange-500 text-orange-500 shadow-md flex items-center justify-center rounded-full cursor-pointer hover:bg-orange-500 hover:text-white">
                         &#10095;
                     </div>
                 </Swiper>

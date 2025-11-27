@@ -8,12 +8,12 @@ const ThreeSteps = () => {
         <section>
             <div className='max-w-6xl mx-auto px-5 py-5'>
                 <Heading title={"3 Steps to delivery"} />
-                <div className='flex justify-center items-center bg-white shadow gap-5 mt-8'>
+                <div className='flex flex-col lg:flex-row justify-center items-center bg-white shadow gap-5 mt-8 overflow-hidden'>
                     {FreshPizzaArray.map((item, index) => (
                         <div
                             key={item.id}
-                            className={`px-3 py-10 flex flex-col justify-center items-center text-center 
-                                ${index === 1 ? 'border border-dashed border-t-transparent border-b-transparent border-orange-500' : ''
+                            className={`px-3 py-10 flex flex-col justify-center items-center text-center shadow-md hover:shadow-lg transition-transform duration-300 hover:scale-105 lg:shadow-none lg:hover:shadow-none
+                                ${index === 1 ? 'lg:border border-dashed border-t-transparent border-b-transparent border-orange-500' : ''
                                 }`}>
                             <div className='flex justify-center items-center relative'>
                                 <span className='bg-orange-500/20 h-10 w-10 rounded-full rounded-tl-5xl rounded-tr-2xl rounded-br-lg rounded-bl-lg rotate-90  left-3 top-1 absolute'></span>
@@ -25,7 +25,6 @@ const ThreeSteps = () => {
                         </div>
                     ))}
                 </div>
-
             </div>
         </section>
     )

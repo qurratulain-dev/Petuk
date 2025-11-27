@@ -5,7 +5,7 @@ import { MdOutlinePhoneInTalk } from 'react-icons/md'
 const WeHate = () => {
     return (
         <section className='bg-[#fcfcfc]'>
-            <div className='max-w-6xl mx-auto px-5 py-20 flex gap-10'>
+            <div className='max-w-6xl mx-auto px-10 py-20 flex gap-10 flex-col-reverse md:flex-row'>
                 <div className='flex-1 flex flex-col'>
                     <h2 className='text-zinc-800 text-3xl font-bold'>We Hate Late!</h2>
                     <p className='text-sm text-zinc-500 my-4'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione corporis eveniet consectetur earum, rem voluptatem.</p>
@@ -24,7 +24,7 @@ const WeHate = () => {
                 </div>
                 <div className='flex-1 flex flex-col relative'>
                     {/* pic call box */}
-                    <div className='flex justify-center items-center gap-2 bg-white -rotate-12 rounded shadow-lg p-3 w-[20vw] absolute  -top-5'>
+                    <div className='flex justify-center items-center gap-2 bg-white -rotate-12 rounded shadow-lg p-3 md:w-[20vw] absolute  -top-5'>
                     <MdOutlinePhoneInTalk className='text-5xl text-orange-500'/>
                         <div >
                             <p className='text-zinc-500 text-sm font-light capitalize'>call for order</p>
@@ -32,14 +32,6 @@ const WeHate = () => {
                         </div>
                     </div>
                     <img src={wehate} alt="" className='h-[70vh] w-[80vw] rounded-full'/>
-                    {/* buy 1 box */}
-                    <div className='flex justify-center items-center gap-2 bg-black rounded shadow-lg p-3 w-[20vw] absolute bottom-10 right-1'>
-                    <MdOutlinePhoneInTalk className='text-5xl text-orange-500'/>
-                        <div >
-                            <p className='text-white text-sm font-light capitalize'>Buy 1 pizza now</p>
-                            <p className='text-white text-2xl font-bold'>GET 1 FREE</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>

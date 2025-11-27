@@ -6,8 +6,8 @@ import playStore from '../assets/play_store.png'
 const Footer = () => {
   return (
     <section>
-      <div className='max-w-6xl mx-auto px-5 py-5 flex justify-between items-center'>
-        <div className='basis-[40%]'>
+      <div className='max-w-6xl mx-auto px-5 py-10 flex md:justify-between md:items-center md:flex-row flex-col gap-5'>
+        <div className='basis-[40%] flex flex-col items-center md:items-start'>
           <div className='flex items-center gap-1'>
             <GiFullPizza size={32} color='coral' />
             <h2 className='font-bold text-xl text-zinc-700'>Petuk</h2>
@@ -33,8 +33,10 @@ const Footer = () => {
             }
           </div>
         </div>
+        {/* 2 links */}
+        <div className='flex basis-[40%] justify-around'>
         {/* quick links */}
-        <div className='basis-[20%]'>
+        <div className=''>
           <h2 className='text-zinc-800 text-xl font-semibold pt-14'>Quick Links</h2>
           <ul className='flex flex-col text-sm text-zinc-500 leading-7 mt-3'>
             <li >Pizza</li>
@@ -45,7 +47,7 @@ const Footer = () => {
           </ul>
         </div>
         {/* important links */}
-        <div className='basis-[20%]'>
+        <div className=''>
           <h2 className='text-zinc-800 text-xl font-semibold pt-14'>Important Links</h2>
           <ul className='flex flex-col text-sm text-zinc-500 leading-7 mt-3'>
             <li>About</li>
@@ -55,8 +57,9 @@ const Footer = () => {
             <li>Contact</li>
           </ul>
         </div>
+        </div>
         {/* opening hours */}
-        <div className='basis-[20%]'>
+        <div className='basis-[20%] flex flex-col justify-center items-center mt-5 md:mt-0'>
           <h2 className='text-zinc-800 text-xl font-semibold'>Opening Hours</h2>
           <ul className='flex flex-col text-sm text-zinc-500 leading-7 mt-3'>
             <li>Sat: 8pm-5pm</li>
@@ -65,10 +68,10 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-
-      <div className='max-w-6xl mx-auto px-10 flex justify-between items-center py-14'>
+<hr className='max-w-6xl mx-auto h-px bg-gray-500 text-gray-500'/>
+      <div className='max-w-6xl mx-auto px-10 flex justify-between items-center py-5 flex-col md:flex-row gap-5'>
         <p className='text-zinc-500 text-sm font-light'>@ 2025 Petuk.All right reserved by <span className='text-amber-300 text-sm font-light'>themeix</span></p>
-        <ul className='flex justify-center items-center gap-5 text-sm text-zinc-500'>
+        <ul className='flex justify-center items-center gap-5 text-sm text-zinc-500 text-right'>
           <li>impresum</li>
           <li>cookie plicy</li>
           <li>AGBs</li>

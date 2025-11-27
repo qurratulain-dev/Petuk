@@ -8,18 +8,18 @@ import { TbTruckDelivery } from 'react-icons/tb'
 const FastestDelivery = () => {
     return (
         <section className='bg-[#fcfcfc]'>
-            <div className='max-w-6xl mx-auto px-5 py-5'>
+            <div className='max-w-6xl mx-auto px-5 py-16'>
                 <Heading title={"Fast Delivey"} />
-                <div className='flex justify-between items-center'>
+                <div className='flex justify-between items-center md:flex-row flex-col gap-10 md:'>
                     <div className='flex-1'>
-                        <img src={deliveryboy} alt="Delivery Boy" className='h-[65vh] w-[40vw]'/>
+                        <img src={deliveryboy} alt="Delivery Boy" className='h-[65vh] md:w-[40vw] w-full mt-5'/>
                     </div>
                     <div className='flex-1'>
-                        <div className='flex flex-col justify-center items-center gap-5'>
+                        <div className='flex flex-col justify-center items-center gap-5 overflow-hidden'>
                             {
                                 FastestDeliverArray.map((item) => (
                                     <div key={item.id}
-                                    className='flex justify-center items-center gap-16 relative px-6 py-5 bg-white shadow-sm '>
+                                    className='flex justify-center items-center gap-16 relative px-6 py-5 bg-white shadow-sm transition-transform duration-300 hover:scale-105'>
                                         <div className='flex justify-center items-center'>
                                             <span className='bg-orange-500/20 h-8 w-8 rounded-full rounded-tl-5xl rounded-tr-2xl rounded-br-lg  left-7 top-10 rounded-bl-lg rotate-90 absolute'></span>
                                             <div className='absolute text-3xl text-orange-500 left-5'>{item.icon}</div>

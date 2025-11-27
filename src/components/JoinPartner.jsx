@@ -9,10 +9,10 @@ const JoinPartner = () => {
         <section className='bg-[#fcfcfc]'>
             <div className='max-w-6xl mx-auto px-5 py-10 relative'>
                 <Heading title={"Join as Partner"}/>
-                <div className='flex justify-center items-center gap-5 mt-10'>
+                <div className='flex justify-center items-center gap-10 flex-col md:flex-row overflow-hidden'>
                     {
                         joinPartnerArray.map((item) => (
-                            <div className='bg-white shadow p-10 flex flex-col items-center justify-center text-center relative'>
+                            <div className='bg-white shadow p-10 flex flex-col items-center justify-center text-center relative mt-16 mb-5 transition-transform duration-300 hover:scale-105'>
                                 <div className='bg-white w-28 h-28 text-6xl text-orange-500 flex justify-center items-center rounded-full absolute -top-14'>{item.icon}</div>
                                 <h2 className='text-zin font-semibold text-xl mt-5'>{item.name}</h2>
                                 <p className='text-zinc-500 text-sm my-5 '>{item.para}</p>

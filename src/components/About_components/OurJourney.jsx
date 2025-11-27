@@ -5,7 +5,7 @@ import journey from '../../assets/journey.png'
 const OurJourney = () => {
     return (
         <section>
-            <div className='max-w-6xl mx-auto px-5 py-20 flex gap-10 justify-center items-center'>
+            <div className='max-w-6xl mx-auto px-5 py-20 flex gap-10 justify-center items-center flex-col md:flex-row'>
             <div className='flex-1 flex flex-col'>
                     <img src={journey} alt="" className='h-[70vh] w-[70vw]  rounded-full' />
                 </div>

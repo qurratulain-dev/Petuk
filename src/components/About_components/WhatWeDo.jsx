@@ -60,7 +60,7 @@ const WhatWeDo = () => {
           ))}
         </div>
         {/* Right*/}
-        <div className='flex-1 flex flex-col mt-10 md:mt-0'>
+        <div className='flex-1 md:flex flex-col mt-10 md:mt-0 hidden'>
           <img src={journey} alt="" className='h-[70vh] w-[60vw] rounded-full' />
         </div>
       </div>

@@ -6,15 +6,15 @@ import { MdOutlinePhoneInTalk } from 'react-icons/md'
 const ContactCards = () => {
     return (
         <section>
-            <div className='max-w-6xl mx-auto px-10 py-10'>
+            <div className='max-w-6xl mx-auto px-10 py-10 md:flex-row flex-col'>
                 <div className='flex justify-center items-center gap-10'>
                     {
                         contactCardsArray.map((item) => (
                             <div className=' flex flex-1 flex-col justify-center items-center p-10 border-2 border-dashed border-orange-300'>
-                                <h2 className='font-bold text-2xl text-zinc-500'>{item.name}</h2>
-                                <div>{item.icon}</div>
-                                <p>{item.p1}</p>
-                                <p>{item.p2}</p>
+                                <h2 className='font-bold text-xl text-zinc-800'>{item.name}</h2>
+                                <div className='text-7xl text-orange-400 my-5'>{item.icon}</div>
+                                <p className='text-sm text-zinc-500 font-light'>{item.p1}</p>
+                                <p className='text-sm text-zinc-500 font-light'>{item.p2}</p>
                             </div>
                         ))
                     }

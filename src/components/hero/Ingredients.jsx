@@ -1,4 +1,4 @@
-import { motion, useTransform } from 'framer-motion'
+import { motion, useMotionValue, useTransform } from 'framer-motion'
 
 export const BasilLeaf = ({ size = 44, className = '' }) => (
   <svg width={size} height={size} viewBox="0 0 48 48" className={className} aria-hidden="true">
@@ -33,6 +33,24 @@ export const Chilli = ({ size = 40, className = '' }) => (
   </svg>
 )
 
+export const Mozzarella = ({ size = 44, className = '' }) => (
+  <svg width={size} height={size} viewBox="0 0 48 48" className={className} aria-hidden="true">
+    <circle cx="24" cy="24" r="19" fill="#fffaf0" stroke="#f3e6cf" strokeWidth="2" />
+    <circle cx="18" cy="19" r="4.2" fill="#fdf2dd" />
+    <circle cx="30" cy="27" r="3.4" fill="#fdf2dd" />
+    <circle cx="21" cy="31" r="2.6" fill="#fdf2dd" />
+    <ellipse cx="29" cy="16" rx="3" ry="1.8" fill="#ffffff" />
+  </svg>
+)
+
+export const SauceDrop = ({ size = 44, className = '' }) => (
+  <svg width={size} height={size} viewBox="0 0 48 48" className={className} aria-hidden="true">
+    <path d="M24 5c6 9 12 15 12 23a12 12 0 0 1-24 0c0-8 6-14 12-23Z" fill="#dc2626" />
+    <path d="M24 12c3.6 6 7 10 7 15a7 7 0 0 1-14 0c0-5 3.4-9 7-15Z" fill="#f87171" />
+    <ellipse cx="20" cy="30" rx="2.4" ry="3.4" fill="#fecaca" />
+  </svg>
+)
+
 const Ingredient = ({ mx, my, depth, top, left, delay = 0, float = 12, children }) => {
   const x = useTransform(mx, (value) => value * depth)
   const y = useTransform(my, (value) => value * depth)
@@ -50,21 +68,28 @@ const Ingredient = ({ mx, my, depth, top, left, delay = 0, float = 12, children 
 }
 
 // Decorative floating ingredients that drift at different parallax depths.
-const IngredientField = ({ mx, my }) => (
-  <>
-    <Ingredient mx={mx} my={my} depth={1.1} top="6%" left="-6%" delay={0.2}>
-      <BasilLeaf size={48} />
-    </Ingredient>
-    <Ingredient mx={mx} my={my} depth={0.6} top="12%" left="78%" delay={0.8}>
-      <TomatoSlice size={44} />
-    </Ingredient>
-    <Ingredient mx={mx} my={my} depth={1.3} top="84%" left="82%" delay={0.6}>
-      <Chilli size={42} />
-    </Ingredient>
-    <Ingredient mx={mx} my={my} depth={0.5} top="42%" left="96%" delay={1}>
-      <BasilLeaf size={34} />
-    </Ingredient>
-  </>
-)
+// Mouse parallax values are optional; without them the field simply floats.
+const IngredientField = ({ mx, my }) => {
+  const zero = useMotionValue(0)
+  const px = mx || zero
+  const py = my || zero
+
+  return (
+    <>
+      <Ingredient mx={px} my={py} depth={1.1} top="6%" left="-6%" delay={0.2}>
+        <BasilLeaf size={48} />
+      </Ingredient>
+      <Ingredient mx={px} my={py} depth={0.6} top="12%" left="78%" delay={0.8}>
+        <TomatoSlice size={44} />
+      </Ingredient>
+      <Ingredient mx={px} my={py} depth={1.3} top="84%" left="82%" delay={0.6}>
+        <Chilli size={42} />
+      </Ingredient>
+      <Ingredient mx={px} my={py} depth={0.5} top="42%" left="96%" delay={1}>
+        <BasilLeaf size={34} />
+      </Ingredient>
+    </>
+  )
+}
 
 export default IngredientField

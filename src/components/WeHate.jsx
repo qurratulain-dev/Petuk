@@ -3,6 +3,7 @@ import wehate from '../assets/wehate.jpg'
 import { TiTick } from 'react-icons/ti'
 import { MdOutlinePhoneInTalk } from 'react-icons/md'
 import { motion } from 'framer-motion'
+import ImageReveal from './ui/ImageReveal'
 const WeHate = () => {
     return (
         <section className='bg-[#fcfcfc]'>
@@ -32,7 +33,13 @@ const WeHate = () => {
                             <p className='text-zinc-800 text-2xl font-bold'>1(789)00123</p>
                         </div>
                     </motion.div>
-                    <img src={wehate} alt="" className='h-[70vh] w-[80vw] rounded-full'/>
+                    <ImageReveal
+                        src={wehate}
+                        alt="Fresh pizza"
+                        className='h-[55vh] w-full md:h-[70vh]'
+                        radius='rounded-full'
+                        cursor='View'
+                    />
                 </div>
             </div>
         </section>

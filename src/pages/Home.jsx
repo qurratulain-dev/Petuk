@@ -1,5 +1,7 @@
-import React from 'react'
 import Hero from '../components/Hero'
+import Marquee from '../components/sections/Marquee'
+import Stats from '../components/sections/Stats'
+import Testimonials from '../components/sections/Testimonials'
 import SelectedShops from '../components/SelectedShops'
 import WeeklyPizzaCards from '../components/WeeklyPizza/WeeklyPizzaCards'
 import FreshPizza from '../components/FreshPizza/FreshPizza'
@@ -15,15 +17,28 @@ const Home = () => {
   return (
     <>
       <Hero />
+      <Marquee />
       <SelectedShops />
-      <Reveal><WeeklyPizzaCards /></Reveal>
+      <Stats />
+      <Reveal>
+        <WeeklyPizzaCards />
+      </Reveal>
       <FreshPizza />
       <FastestDelivery />
       <BestCheese />
-      <Reveal><WeHate /></Reveal>
-      <Reveal><LatestNews /></Reveal>
-      <Reveal><JoinPartner /></Reveal>
-      <Reveal><Subscribe /></Reveal>
+      <Reveal>
+        <WeHate />
+      </Reveal>
+      <Testimonials />
+      <Reveal>
+        <LatestNews />
+      </Reveal>
+      <Reveal>
+        <JoinPartner />
+      </Reveal>
+      <Reveal>
+        <Subscribe />
+      </Reveal>
     </>
   )
 }

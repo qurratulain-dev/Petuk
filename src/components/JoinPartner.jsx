@@ -5,6 +5,7 @@ import { BsAward } from 'react-icons/bs'
 import { FaShop } from 'react-icons/fa6'
 import { motion } from 'framer-motion'
 import { Stagger, StaggerItem } from './motion/Reveal'
+import Magnetic from './ui/Magnetic'
 
 const JoinPartner = () => {
     return (
@@ -18,7 +19,9 @@ const JoinPartner = () => {
                                 <div className='bg-white w-28 h-28 text-6xl text-orange-500 flex justify-center items-center rounded-full absolute -top-14'>{item.icon}</div>
                                 <h2 className='text-zin font-semibold text-xl mt-5'>{item.name}</h2>
                                 <p className='text-zinc-500 text-sm my-5 '>{item.para}</p>
-                                <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} className='px-4 py-2 text-white bg-orange-500 flex justify-center items-center gap-2 rounded-full'>{item.smallicon}{item.button}</motion.button>
+                                <Magnetic>
+                                    <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} className='btn-sweep px-4 py-2 text-white bg-orange-500 flex justify-center items-center gap-2 rounded-full'>{item.smallicon}{item.button}</motion.button>
+                                </Magnetic>
                             </StaggerItem>
                         ))
                     }

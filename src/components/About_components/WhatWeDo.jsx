@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import journey from '../../assets/journey.png';
+import ImageReveal from '../ui/ImageReveal';
 
 const accordions = [
   {
@@ -62,7 +63,13 @@ const WhatWeDo = () => {
           ))}
         </div>
         <div className='flex-1 md:flex flex-col mt-10 md:mt-0 hidden'>
-          <img src={journey} alt="" className='h-[70vh] w-[60vw] rounded-full' />
+          <ImageReveal
+            src={journey}
+            alt="What we do"
+            className='h-[70vh] w-full'
+            radius='rounded-full'
+            cursor='View'
+          />
         </div>
       </div>
     </section>

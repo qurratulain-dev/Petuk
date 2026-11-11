@@ -1,13 +1,20 @@
 import React from 'react'
 import { TiTick } from 'react-icons/ti'
 import journey from '../../assets/journey.png'
+import ImageReveal from '../ui/ImageReveal'
 
 const OurJourney = () => {
     return (
         <section>
             <div className='max-w-6xl mx-auto px-5 py-20 flex gap-10 justify-center items-center flex-col md:flex-row'>
             <div className='flex-1 flex flex-col'>
-                    <img src={journey} alt="" className='h-[70vh] w-[70vw]  rounded-full' />
+                    <ImageReveal
+                        src={journey}
+                        alt="Our journey"
+                        className='h-[55vh] w-full md:h-[70vh]'
+                        radius='rounded-full'
+                        cursor='View'
+                    />
                 </div>
                 <div className='flex-1 flex flex-col'>
                     <h2 className='text-zinc-800 text-4xl font-bold tracking-tight'>Our Journey</h2>

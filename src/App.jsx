@@ -7,6 +7,10 @@ import Blog from "./pages/Blog";
 import Cart from "./pages/Cart/Cart";
 import Contact from "./pages/Contact";
 import Shop from "./pages/Shop";
+import Checkout from "./pages/Checkout";
+import OrderSuccess from "./pages/OrderSuccess";
+import Orders from "./pages/Orders";
+import NotFound from "./pages/NotFound";
 import { CartProvider } from "./context/CartContext";
 
 const App = () => {
@@ -23,6 +27,10 @@ const App = () => {
               <Route path="/contact" element={<Contact />} />
               <Route path="/shop" element={<Shop />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/order-success/:id" element={<OrderSuccess />} />
+              <Route path="/orders" element={<Orders />} />
+              <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
         </BrowserRouter>

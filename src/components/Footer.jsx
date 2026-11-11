@@ -1,99 +1,102 @@
-import React from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
 import { GiFullPizza } from 'react-icons/gi'
 import appStore from '../assets/app_store.png'
 import playStore from '../assets/play_store.png'
 
 const Footer = () => {
+  const reduce = useReducedMotion()
+
   return (
-    <section>
-      <div className='max-w-6xl mx-auto px-5 py-10 flex md:justify-between md:items-center md:flex-row flex-col gap-5'>
-        <div className='basis-[40%] flex flex-col items-center md:items-start'>
-          <div className='flex items-center gap-1'>
-            <GiFullPizza size={32} color='coral' />
-            <h2 className='font-bold text-xl text-zinc-700'>Petuk</h2>
+    <section className="overflow-hidden bg-[#fcfcfc]">
+      <div className="mx-auto flex max-w-6xl flex-col gap-5 px-5 py-10 md:flex-row md:items-center md:justify-between">
+        <div className="flex basis-[40%] flex-col items-center md:items-start">
+          <div className="flex items-center gap-1">
+            <GiFullPizza size={32} color="coral" />
+            <h2 className="text-xl font-bold text-zinc-700">Petuk</h2>
           </div>
-          <ul className='text-sm text-zinc-500 flex items-center space-x-5 my-3'>
-            <li>Facebook</li>
-            <li>Instagram</li>
-            <li>LinkedIn</li>
-            <li>Pinterest</li>
+          <ul className="my-3 flex items-center space-x-5 text-sm text-zinc-500">
+            {['Facebook', 'Instagram', 'LinkedIn', 'Pinterest'].map((social) => (
+              <li key={social} className="link-underline cursor-pointer">
+                {social}
+              </li>
+            ))}
           </ul>
-          <h2 className='text-zinc-800 text-xl font-bold mt-10 py-4'>Ready to get started?</h2>
-          <div className='flex gap-2'>
-            {
-              heroArray.map((item) => (
-                <a
-                  key={item.id}
-                  href={item.href}
-                  target="_blank"
-                  rel={item.rel}>
-                  <img src={item.img} alt={item.alt} className="w-28 h-10" />
-                </a>
-              ))
-            }
+          <h2 className="mt-10 py-4 text-xl font-bold text-zinc-800">Ready to get started?</h2>
+          <div className="flex gap-2">
+            <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">
+              <img src={playStore} alt="Play Store" className="h-10 w-28" />
+            </a>
+            <a href="https://www.apple.com/app-store/" target="_blank" rel="noopener noreferrer">
+              <img src={appStore} alt="App Store" className="h-10 w-28" />
+            </a>
           </div>
         </div>
-        {/* 2 links */}
-        <div className='flex basis-[40%] justify-around'>
-        {/* quick links */}
-        <div className=''>
-          <h2 className='text-zinc-800 text-xl font-semibold pt-14'>Quick Links</h2>
-          <ul className='flex flex-col text-sm text-zinc-500 leading-7 mt-3'>
-            <li >Pizza</li>
-            <li>Burger</li>
-            <li>cake</li>
-            <li>Chcolate</li>
-            <li>Ice Cream</li>
-          </ul>
+
+        <div className="flex basis-[40%] justify-around">
+          <div>
+            <h2 className="pt-14 text-xl font-semibold text-zinc-800">Quick Links</h2>
+            <ul className="mt-3 flex flex-col text-sm leading-7 text-zinc-500">
+              {['Pizza', 'Burger', 'Cake', 'Chocolate', 'Ice Cream'].map((link) => (
+                <li key={link} className="link-underline w-fit cursor-pointer">
+                  {link}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h2 className="pt-14 text-xl font-semibold text-zinc-800">Important Links</h2>
+            <ul className="mt-3 flex flex-col text-sm leading-7 text-zinc-500">
+              {['About', 'News', 'Shop', 'FAQ', 'Contact'].map((link) => (
+                <li key={link} className="link-underline w-fit cursor-pointer">
+                  {link}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        {/* important links */}
-        <div className=''>
-          <h2 className='text-zinc-800 text-xl font-semibold pt-14'>Important Links</h2>
-          <ul className='flex flex-col text-sm text-zinc-500 leading-7 mt-3'>
-            <li>About</li>
-            <li>News</li>
-            <li>Shop</li>
-            <li>FAQ</li>
-            <li>Contact</li>
-          </ul>
-        </div>
-        </div>
-        {/* opening hours */}
-        <div className='basis-[20%] flex flex-col justify-center items-center mt-5 md:mt-0'>
-          <h2 className='text-zinc-800 text-xl font-semibold'>Opening Hours</h2>
-          <ul className='flex flex-col text-sm text-zinc-500 leading-7 mt-3'>
+
+        <div className="mt-5 flex basis-[20%] flex-col items-center justify-center md:mt-0">
+          <h2 className="text-xl font-semibold text-zinc-800">Opening Hours</h2>
+          <ul className="mt-3 flex flex-col text-sm leading-7 text-zinc-500">
             <li>Sat: 8pm-5pm</li>
             <li>Sun-Thurs: 12pm-8pm</li>
-            <li>Friday: <span className='text-red-500'>Closed</span></li>
+            <li>
+              Friday: <span className="text-red-500">Closed</span>
+            </li>
           </ul>
         </div>
       </div>
-<hr className='max-w-6xl mx-auto h-px bg-gray-500 text-gray-500'/>
-      <div className='max-w-6xl mx-auto px-10 flex justify-between items-center py-5 flex-col md:flex-row gap-5'>
-        <p className='text-zinc-500 text-sm font-light'>@ 2025 Petuk.All right reserved by <span className='text-amber-300 text-sm font-light'>themeix</span></p>
-        <ul className='flex justify-center items-center gap-5 text-sm text-zinc-500 text-right'>
-          <li>impresum</li>
-          <li>cookie plicy</li>
-          <li>AGBs</li>
+
+      {/* Big animated wordmark revealed on scroll */}
+      <div className="mx-auto max-w-6xl px-5">
+        <div className="overflow-hidden">
+          <motion.h2
+            initial={reduce ? false : { y: '110%' }}
+            whileInView={{ y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            className="select-none bg-gradient-to-b from-orange-500/80 to-orange-200/40 bg-clip-text text-center text-[22vw] font-black leading-none text-transparent"
+          >
+            Petuk
+          </motion.h2>
+        </div>
+      </div>
+
+      <hr className="mx-auto h-px max-w-6xl bg-gray-300" />
+
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-5 px-10 py-5 md:flex-row">
+        <p className="text-sm font-light text-zinc-500">
+          © 2025 Petuk. All rights reserved by{' '}
+          <span className="text-sm font-light text-amber-500">themeix</span>
+        </p>
+        <ul className="flex items-center justify-center gap-5 text-right text-sm text-zinc-500">
+          <li className="link-underline cursor-pointer">impressum</li>
+          <li className="link-underline cursor-pointer">cookie policy</li>
+          <li className="link-underline cursor-pointer">AGBs</li>
         </ul>
       </div>
     </section>
   )
 }
-const heroArray = [
-  {
-    id: 1,
-    href: "https://play.google.com/store",
-    rel: "noopener noreferrer",
-    img: playStore,
-    alt: "Play Store",
-  },
-  {
-    id: 2,
-    href: "https://www.apple.com/app-store/",
-    rel: "noopener noreferrer",
-    img: appStore,
-    alt: "App Store",
-  },
-]
+
 export default Footer

@@ -2,6 +2,7 @@ import React from 'react'
 import { HiMiniReceiptPercent } from 'react-icons/hi2'
 import hero from '../assets/hero.webp'
 import { Reveal, Stagger, StaggerItem } from './motion/Reveal'
+import ImageReveal from './ui/ImageReveal'
 
 const SelectedShops = () => {
   return (
@@ -22,8 +23,14 @@ const SelectedShops = () => {
           {
             selectedShopsArray.map((item) => (
               <StaggerItem key={item.id} whileHover={{ y: -8 }} className='bg-orange-50 border border-dashed border-orange-500 flex-1 rounded-lg mt-5 w-full'>
-                <div className='flex justify-end items-start  overflow-hidden rounded-tr-lg'>
-                  <img src={item.image} alt={item.name} className='w-56 h-40 lg:w-[300px] rounded-tr-lg relative  -top-2 lg:top-0 -right-1 object-cover transition-transform duration-300 hover:scale-105' />
+                <div className='flex justify-end items-start overflow-hidden rounded-tr-lg'>
+                  <ImageReveal
+                    src={item.image}
+                    alt={item.name}
+                    className='h-40 w-56 lg:w-[300px]'
+                    radius='rounded-tr-lg'
+                    cursor='View'
+                  />
                 </div>
                 <div className='flex flex-col px-10 -pt-10'>
                   <p className='text-3xl text-orange-500 font-bold'>{item.date}</p>

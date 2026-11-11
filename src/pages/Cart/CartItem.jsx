@@ -1,50 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineDelete } from 'react-icons/ai'
 import { GiFullPizza } from 'react-icons/gi'
 import FoodImage from '../../components/FoodImage'
 import AnimatedNumber from '../../components/motion/AnimatedNumber'
 import { useCart } from '../../context/CartContext'
-import { DELIVERY_FEE, formatPrice } from '../../utils/format'
+import { FREE_DELIVERY_THRESHOLD, formatPrice, getDeliveryFee } from '../../utils/format'
 
 const CartItem = () => {
-    const { items, subtotal, setQty, removeItem, clear } = useCart()
-    const [placed, setPlaced] = useState(false)
-    const delivery = items.length ? DELIVERY_FEE : 0
+    const { items, subtotal, setQty, removeItem } = useCart()
+    const navigate = useNavigate()
+    const delivery = items.length ? getDeliveryFee(subtotal) : 0
     const total = subtotal + delivery
-
-    const placeOrder = () => {
-        clear()
-        setPlaced(true)
-    }
-
-    // order success screen
-    if (placed) {
-        return (
-            <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className='max-w-md mx-auto px-5 py-20 text-center'
-            >
-                <svg viewBox="0 0 52 52" className='w-24 h-24 mx-auto'>
-                    <motion.circle cx="26" cy="26" r="24" fill="none" stroke="#22c55e" strokeWidth="3"
-                        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.6 }} />
-                    <motion.path d="M14 27 l8 8 l16 -16" fill="none" stroke="#22c55e" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"
-                        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.4, delay: 0.5 }} />
-                </svg>
-                <motion.h2 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}
-                    className='text-2xl font-bold text-zinc-800 mt-6'>Order placed!</motion.h2>
-                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}
-                    className='text-zinc-500 text-sm mt-2'>Your hot pizza is on its way. Estimated delivery: 50 minutes.</motion.p>
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}>
-                    <Link to="/shop" className='inline-block mt-6 bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition'>
-                        Order more
-                    </Link>
-                </motion.div>
-            </motion.div>
-        )
-    }
+    const remaining = Math.max(FREE_DELIVERY_THRESHOLD - subtotal, 0)
+    const progress = Math.min(subtotal / FREE_DELIVERY_THRESHOLD, 1)
 
     // empty cart
     if (items.length === 0) {
@@ -125,13 +95,28 @@ const CartItem = () => {
                 className="md:basis-[30%] w-full bg-gray-50 p-5 rounded-md shadow-md md:sticky md:top-[16vh]"
             >
                 <h2 className="text-lg font-semibold mb-4">Cart Total</h2>
+                <div className="mb-4 rounded-lg bg-orange-50 p-3">
+                    <p className="text-xs text-zinc-600">
+                        {remaining > 0
+                            ? `Add ${formatPrice(remaining)} more for free delivery`
+                            : 'You unlocked free delivery!'}
+                    </p>
+                    <div className="mt-2 h-2 overflow-hidden rounded-full bg-orange-100">
+                        <motion.div
+                            className="h-full origin-left rounded-full bg-orange-500"
+                            animate={{ scaleX: progress || 0.001 }}
+                            transition={{ type: 'spring', stiffness: 120, damping: 20 }}
+                            style={{ width: '100%' }}
+                        />
+                    </div>
+                </div>
                 <div className="flex justify-between text-gray-500 mb-2">
                     <p>SubTotal</p>
                     <AnimatedNumber value={subtotal} />
                 </div>
                 <div className="flex justify-between text-gray-500 mb-2">
                     <p>Delivery fee</p>
-                    <p>{formatPrice(delivery)}</p>
+                    <p>{delivery === 0 ? 'Free' : formatPrice(delivery)}</p>
                 </div>
                 <hr className="my-3" />
                 <div className="flex justify-between text-gray-800 font-semibold mb-4">
@@ -141,8 +126,8 @@ const CartItem = () => {
                 <motion.button
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
-                    onClick={placeOrder}
-                    className="w-full bg-orange-500 text-white py-3 rounded-md hover:bg-orange-600 transition-colors"
+                    onClick={() => navigate('/checkout')}
+                    className="btn-sweep w-full bg-orange-500 text-white py-3 rounded-md hover:bg-orange-600 transition-colors"
                 >
                     Proceed to Checkout
                 </motion.button>

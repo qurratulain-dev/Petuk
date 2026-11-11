@@ -1,51 +1,70 @@
-import React, {useState} from 'react'
+import { useState } from 'react'
 import Heading from '../Heading'
 import client from '../../assets/client.webp'
 import nature from '../../assets/nature.jpg'
 import { FiLoader } from 'react-icons/fi'
+import { TbArrowRight } from 'react-icons/tb'
 import { Link } from 'react-router-dom'
-import { BlogData } from './BlogData.js';
 import { motion } from 'framer-motion'
 import { Stagger, StaggerItem } from '../motion/Reveal'
-
+import ImageReveal from '../ui/ImageReveal'
+import { BlogData } from './BlogData.js'
 
 const LatestNews = () => {
-const [showAll,setShowAll]=useState(false)
-const displayedNews=showAll?BlogData:BlogData.slice(0,4);
+  const [showAll, setShowAll] = useState(false)
+  const displayedNews = showAll ? BlogData : BlogData.slice(0, 4)
 
-    return (
-        <section className='bg-[#f9f9f9] '>
-            <div className='max-w-6xl mx-auto px-5 py-10 flex flex-col justify-center items-center'>
-                <Heading title={"Latest News"} />
-                <Stagger className='flex justify-center items-center gap-5 mt-10 text-white  flex-wrap'>
-                    {
-                        displayedNews.map((item) => (
-                            <StaggerItem key={item.id} whileHover={{ y: -8 }} className='w-[250px] h-[300px] relative mb-20'>
-                                <div >
-                                    <img src={nature} alt="" className='rounded-xl object-cover' />
-                                </div>
-                                <div className='absolute bottom-0'>
-                                    <div key={item.id} className='p-3'>
-                                        <div className='flex gap-2'>
-                                            <img src={client} alt="client" className='h-5 w-5 rounded-full z-10 bg-orange-500' />
-                                            <h2 className='text-[12px]'>{item.name}</h2>
-                                        </div>
-                                        <p className='text-sm my-2 font-semibold'>{item.para}</p>
-                                        <button className='text-sm border border-white rounded-full px-2 py-1 '>{item.button}</button>
-                                    </div>
-                                </div>
-                            </StaggerItem>
-                        ))
-                    }
-                </Stagger>
-                <Link to="/blog">
-                    <motion.button whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.95 }} onClick={()=>setShowAll(true)}
-                    className='text-sm text-white bg-orange-500 px-4 py-2 rounded-full font-semibold flex justify-center items-center gap-2 '><FiLoader /> Load more posts</motion.button>
-                </Link>
+  return (
+    <section className="bg-[#f9f9f9]">
+      <div className="mx-auto flex max-w-6xl flex-col items-center px-5 py-10">
+        <Heading title="Latest News" />
+        <Stagger className="mt-10 flex flex-wrap items-center justify-center gap-5 text-white">
+          {displayedNews.map((item) => (
+            <StaggerItem key={item.id} className="group relative mb-10 h-[300px] w-[250px] overflow-hidden rounded-xl">
+              <ImageReveal
+                src={nature}
+                alt=""
+                className="absolute inset-0 h-full w-full"
+                hoverZoom
+                cursor="View"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
+              <div className="absolute bottom-0 w-full p-4">
+                <div className="flex items-center gap-2">
+                  <img
+                    src={client}
+                    alt={item.name}
+                    className="z-10 h-5 w-5 rounded-full bg-orange-500 object-cover"
+                  />
+                  <h2 className="text-[12px]">{item.name}</h2>
+                </div>
+                <p className="my-2 text-sm font-semibold">{item.para}</p>
+                <div className="flex items-center justify-between">
+                  <button className="rounded-full border border-white px-2 py-1 text-sm">
+                    {item.button}
+                  </button>
+                  <span className="translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+                    <TbArrowRight size={18} />
+                  </span>
+                </div>
+              </div>
+            </StaggerItem>
+          ))}
+        </Stagger>
 
-            </div>
-        </section>
-    )
+        <Link to="/blog">
+          <motion.button
+            whileHover={{ scale: 1.06 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setShowAll(true)}
+            className="flex items-center justify-center gap-2 rounded-full bg-orange-500 px-4 py-2 text-sm font-semibold text-white"
+          >
+            <FiLoader /> Load more posts
+          </motion.button>
+        </Link>
+      </div>
+    </section>
+  )
 }
 
 export default LatestNews

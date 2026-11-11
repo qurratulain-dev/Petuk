@@ -1,78 +1,90 @@
-import React, { useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion'
-import { FaPizzaSlice } from 'react-icons/fa';
+import { FaPizzaSlice } from 'react-icons/fa'
 import { GiFullPizza } from 'react-icons/gi'
-import { IoCartOutline, IoSearch } from 'react-icons/io5'
-import { Link, useLocation } from 'react-router-dom';
-import { HiMenu } from "react-icons/hi";
-import MobileNav from './MobileNav';
-import { useCart } from '../../context/CartContext';
+import { IoCartOutline } from 'react-icons/io5'
+import { HiMenu } from 'react-icons/hi'
+import { Link, useLocation } from 'react-router-dom'
+import MobileNav from './MobileNav'
+import { useCart } from '../../context/CartContext'
+import { useCartUI } from '../../context/CartUIContext'
 
 const CartIcon = () => {
   const { count } = useCart()
+  const { openCart } = useCartUI()
   return (
-    <Link to="/cart" className='relative' aria-label="Cart">
+    <button onClick={openCart} className="relative" aria-label="Open cart" data-cart-icon>
       <IoCartOutline size={28} />
       <AnimatePresence>
         {count > 0 && (
           <motion.span
-            // new key on every count change -> badge pops again
             key={count}
             initial={{ scale: 0.3 }}
             animate={{ scale: [1.6, 1] }}
             exit={{ scale: 0 }}
             transition={{ type: 'spring', stiffness: 500, damping: 15 }}
-            className='absolute -top-2 -right-2 min-w-5 h-5 px-1 rounded-full bg-orange-500 text-white text-[11px] font-semibold flex items-center justify-center'
+            className="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-orange-500 px-1 text-[11px] font-semibold text-white"
           >
             {count}
           </motion.span>
         )}
       </AnimatePresence>
-    </Link>
+    </button>
   )
 }
 
 const Nav = () => {
-  const location = useLocation();
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const { scrollY } = useScroll();
+  const location = useLocation()
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
+  const lastY = useRef(0)
+  const { scrollY } = useScroll()
 
-  useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 30));
+  useMotionValueEvent(scrollY, 'change', (value) => {
+    setScrolled(value > 30)
+    const diff = value - lastY.current
+    if (value > 140 && diff > 4) setHidden(true)
+    else if (diff < -4 || value <= 140) setHidden(false)
+    lastY.current = value
+  })
 
-  const handleLinkClick = () => setMobileOpen(false);
+  const handleLinkClick = () => setMobileOpen(false)
 
   return (
     <motion.header
       initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-amber-50/90 backdrop-blur-md shadow-md' : 'bg-amber-50'
+      animate={{ y: hidden ? -120 : 0 }}
+      transition={{ duration: 0.45, ease: 'easeOut' }}
+      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
+        scrolled ? 'bg-amber-50/85 shadow-md backdrop-blur-md' : 'bg-amber-50'
       }`}
     >
       <nav
-        className={`max-w-6xl mx-auto px-5 flex justify-between items-center transition-all duration-300 ${
-          scrolled ? 'h-[9vh] min-h-16' : 'h-[13vh]'
+        className={`mx-auto flex max-w-6xl items-center justify-between px-5 transition-all duration-300 ${
+          scrolled ? 'h-16' : 'h-[11vh] min-h-[64px]'
         }`}
       >
         {/* Logo */}
-        <Link to="/" className='flex justify-center items-center gap-1'>
+        <Link to="/" className="flex items-center justify-center gap-1">
           <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.8 }}>
-            <GiFullPizza size={32} color='coral' />
+            <GiFullPizza size={32} color="coral" />
           </motion.div>
-          <h2 className='font-bold text-xl text-zinc-700'>Petuk</h2>
+          <h2 className="text-xl font-bold text-zinc-700">Petuk</h2>
         </Link>
+
         {/* links */}
-        <ul className='hidden md:flex justify-between items-center space-x-10'>
+        <ul className="hidden items-center space-x-8 md:flex">
           {navArray.map((item) => {
-            const isActive = location.pathname === item.path;
+            const isActive = location.pathname === item.path
             return (
               <li
                 key={item.id}
-                className={`relative cursor-pointer transition-colors duration-200 hover:text-orange-500 ${isActive ? 'text-orange-500 font-semibold' : 'text-zinc-800'}`}>
+                className={`relative cursor-pointer transition-colors duration-200 hover:text-orange-500 ${
+                  isActive ? 'font-semibold text-orange-500' : 'text-zinc-800'
+                }`}
+              >
                 {isActive && (
-                  // layoutId makes the slice glide from the old link to the new one
                   <motion.span
                     layoutId="nav-slice"
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
@@ -83,35 +95,33 @@ const Nav = () => {
                 )}
                 <Link to={item.path}>{item.name}</Link>
               </li>
-            );
+            )
           })}
         </ul>
-        {/* Right Section  */}
-        <div className='flex items-center space-x-5'>
-          <div className='flex space-x-3 justify-center items-center md:hidden'>
+
+        {/* Right Section */}
+        <div className="flex items-center space-x-5">
+          <div className="flex items-center space-x-3 md:hidden">
             <CartIcon />
-            <IoSearch size={28} />
           </div>
-          <div className='hidden md:flex md:space-x-8'>
-            <div className='flex flex-col text-right '>
-              <p className='text-[10px] text-zinc-500'>call for order</p>
-              <p className='text-2xl text-orange-500'>1-231-675</p>
+          <div className="hidden md:flex md:space-x-8">
+            <div className="flex flex-col text-right">
+              <p className="text-[10px] text-zinc-500">call for order</p>
+              <p className="text-2xl text-orange-500">1-231-675</p>
             </div>
-
-            <div className='hidden md:flex border-l border-orange-500'></div>
-
-            <div className='flex space-x-3 justify-center items-center'>
+            <div className="hidden border-l border-orange-500 md:flex" />
+            <div className="flex items-center space-x-3">
               <CartIcon />
-              <IoSearch size={28} />
             </div>
           </div>
 
           {/* Hamburger Icon */}
-          <button className='md:hidden' onClick={() => setMobileOpen(true)} aria-label="Open menu">
+          <button className="md:hidden" onClick={() => setMobileOpen(true)} aria-label="Open menu">
             <HiMenu size={32} />
           </button>
         </div>
       </nav>
+
       <MobileNav
         mobileOpen={mobileOpen}
         setMobileOpen={setMobileOpen}
@@ -120,15 +130,16 @@ const Nav = () => {
         handleLinkClick={handleLinkClick}
       />
     </motion.header>
-  );
-};
+  )
+}
 
 const navArray = [
-  { id: 1, name: "Home", path: "/" },
-  { id: 2, name: "About", path: "/about" },
-  { id: 4, name: "Blog", path: "/blog" },
-  { id: 5, name: "Contact", path: "/contact" },
-  { id: 3, name: "Shop", path: "/shop" },
-];
+  { id: 1, name: 'Home', path: '/' },
+  { id: 2, name: 'About', path: '/about' },
+  { id: 4, name: 'Blog', path: '/blog' },
+  { id: 5, name: 'Contact', path: '/contact' },
+  { id: 3, name: 'Shop', path: '/shop' },
+  { id: 6, name: 'Orders', path: '/orders' },
+]
 
-export default Nav;
+export default Nav

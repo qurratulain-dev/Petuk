@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import hero from '../assets/hero.webp'
+import ImageReveal from './ui/ImageReveal'
 
 const Subscribe = () => {
     const [email, setEmail] = useState('')
@@ -21,10 +22,12 @@ const Subscribe = () => {
             <div className='max-w-6xl mx-auto px-10 py-5 rounded-lg bg-amber-50 border-dashed  border-4 border-orange-500/50
             flex items-center gap-8'>
                 <div className='basis-[40%] md:flex hidden'>
-                    <motion.img
-                        src={hero} alt="pizza pic"
+                    <motion.div
+                        className='w-full'
                         animate={{ rotate: [-2, 2, -2] }}
-                        transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }} />
+                        transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}>
+                        <ImageReveal src={hero} alt="pizza pic" className='w-full' cursor='View' />
+                    </motion.div>
                 </div>
                 <div className='md:basis-[60%] flex flex-col justify-center  p-5 md:p-0'>
                     <h2 className='text-3xl text-zinc-800 font-bold'>Subscribe For Pizza offer</h2>

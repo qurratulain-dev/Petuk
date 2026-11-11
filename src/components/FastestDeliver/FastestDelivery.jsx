@@ -4,6 +4,8 @@ import deliveryboy from '../../assets/deliveryboy.avif'
 import { ImSpoonKnife } from 'react-icons/im'
 import { FaMoneyBill1Wave } from 'react-icons/fa6'
 import { TbTruckDelivery } from 'react-icons/tb'
+import { motion } from 'framer-motion'
+import { Reveal, Stagger, StaggerItem } from '../motion/Reveal'
 
 const FastestDelivery = () => {
     return (
@@ -12,13 +14,18 @@ const FastestDelivery = () => {
                 <Heading title={"Fast Delivey"} />
                 <div className='flex justify-between items-center md:flex-row flex-col gap-10 md:'>
                     <div className='flex-1'>
-                        <img src={deliveryboy} alt="Delivery Boy" className='h-[65vh] md:w-[40vw] w-full mt-5'/>
+                        <Reveal x={-60} y={0}>
+                            <motion.img
+                                src={deliveryboy} alt="Delivery Boy" className='h-[65vh] md:w-[40vw] w-full mt-5'
+                                animate={{ y: [0, -12, 0] }}
+                                transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }} />
+                        </Reveal>
                     </div>
                     <div className='flex-1'>
-                        <div className='flex flex-col justify-center items-center gap-5 overflow-hidden'>
+                        <Stagger stagger={0.18} className='flex flex-col justify-center items-center gap-5 overflow-hidden'>
                             {
                                 FastestDeliverArray.map((item) => (
-                                    <div key={item.id}
+                                    <StaggerItem key={item.id}
                                     className='flex justify-center items-center gap-16 relative px-6 py-5 bg-white shadow-sm transition-transform duration-300 hover:scale-105'>
                                         <div className='flex justify-center items-center'>
                                             <span className='bg-orange-500/20 h-8 w-8 rounded-full rounded-tl-5xl rounded-tr-2xl rounded-br-lg  left-7 top-10 rounded-bl-lg rotate-90 absolute'></span>
@@ -28,10 +35,10 @@ const FastestDelivery = () => {
                                             <h2 className='text-zinc-800 text-md font-semibold'>{item.name}</h2>
                                             <p className='text-sm text-zinc-500 '>{item.para}</p>
                                         </div>
-                                    </div>
+                                    </StaggerItem>
                                 ))
                             }
-                        </div>
+                        </Stagger>
                     </div>
                 </div>
             </div>

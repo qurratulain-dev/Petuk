@@ -1,16 +1,18 @@
-# React + Vite
+# Petuk 🍕
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An animated pizza & food delivery front-end built with React. Fully responsive, with a working cart and smooth motion throughout.
 
-Currently, two official plugins are available:
+## Features
+- **Animations (Framer Motion):** scroll-reveal sections, staggered cards, hero entrance, shrinking navbar, sliding active-link indicator, animated mobile menu, page transitions, scroll progress bar
+- **Shop:** category filter with animated layout transitions
+- **Cart:** add / remove / change quantity, animated totals, cart badge, persisted in `localStorage`, order-success animation
+- Respects the OS "reduce motion" setting
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech
+React 19 · Vite · Tailwind CSS v4 · React Router · Framer Motion · Swiper
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Run locally
+```bash
+npm install
+npm run dev
+```

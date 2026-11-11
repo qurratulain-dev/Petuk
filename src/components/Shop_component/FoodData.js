@@ -37,7 +37,7 @@ export const FoodData = [
     },
     {
       id: 5,
-      img: "https://www.pexels.com/photo/fried-eggs-with-potatoes-and-tomatoes-9840171/",
+      img: "",
       name: "Aloo Anda",
       price: 300,
       description: "Traditional Pakistani breakfast with spices.",
@@ -47,7 +47,7 @@ export const FoodData = [
   
     {
       id: 6,
-      img: "https://www.pexels.com/search/chicken%20biryani/",
+      img: "",
       name: "Chicken Biryani",
       price: 500,
       description: "Spicy chicken biryani served with raita.",
@@ -189,7 +189,7 @@ export const FoodData = [
       name: "Zinger Burger",
       price: 450,
       description: "Crispy zinger fillet with mayo and lettuce.",
-      category: "Soup",
+      category: "Snacks",
       rating: 4.8
     },
     {
@@ -198,7 +198,7 @@ export const FoodData = [
       name: "Fries",
       price: 200,
       description: "Crispy hot fries with seasoning.",
-      category: "Soup",
+      category: "Snacks",
       rating: 4.5
     },
     {
@@ -207,7 +207,7 @@ export const FoodData = [
       name: "Shawarma",
       price: 300,
       description: "Arabic style chicken shawarma wrap.",
-      category: "Soup",
+      category: "Snacks",
       rating: 4.7
     },
     {
@@ -216,7 +216,7 @@ export const FoodData = [
       name: "Chicken Wings",
       price: 480,
       description: "Hot and spicy crispy wings.",
-      category: "Soup",
+      category: "Snacks",
       rating: 4.6
     },
     {
@@ -225,7 +225,7 @@ export const FoodData = [
       name: "Samosa Plate",
       price: 180,
       description: "Crispy aloo samosas with chutney.",
-      category: "Soup",
+      category: "Snacks",
       rating: 4.4
     },
   ];

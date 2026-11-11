@@ -2,15 +2,16 @@ import React from 'react'
 import Heading from '../Heading'
 import { TbCircleNumber1Filled, TbCircleNumber2Filled, TbCircleNumber3Filled, TbToolsKitchen2Off, TbTruckDelivery } from 'react-icons/tb'
 import { RiBillLine } from 'react-icons/ri'
+import { Stagger, StaggerItem } from '../motion/Reveal'
 
 const FreshPizza = () => {
     return (
         <section className='bg-[#fcfcfc]'>
             <div className='max-w-6xl mx-auto px-5 py-5'>
                 <Heading title={"Fresh Pizza. Delivered."} />
-                <div className='flex flex-col lg:flex-row justify-center items-center bg-white shadow gap-5 mt-8 overflow-hidden'>
+                <Stagger className='flex flex-col lg:flex-row justify-center items-center bg-white shadow gap-5 mt-8 overflow-hidden'>
                     {FreshPizzaArray.map((item, index) => (
-                        <div
+                        <StaggerItem
                             key={item.id}
                             className={`px-3 py-10 flex flex-col justify-center items-center text-center shadow-md hover:shadow-lg transition-transform duration-300 hover:scale-105 lg:shadow-none lg:hover:shadow-none
                                 ${index === 1 ? 'lg:border border-dashed border-t-transparent border-b-transparent border-orange-500' : ''
@@ -22,9 +23,9 @@ const FreshPizza = () => {
                             </div>
                             <h2 className='text-zinc-800 text-xl my-3 font-semibold'>{item.heading}</h2>
                             <p className='text-zinc-500 text-sm'>{item.para}</p>
-                        </div>
+                        </StaggerItem>
                     ))}
-                </div>
+                </Stagger>
 
             </div>
         </section>

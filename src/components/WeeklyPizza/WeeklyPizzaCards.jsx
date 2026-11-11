@@ -8,38 +8,38 @@ import 'swiper/css/navigation';
 
 const pizzas = [
     {
-        id: 1,
+        id: "w1",
         name: "Mushroom Pizza",
         description: "tomato sauce, olives, eggplant, zucchini, red pepper, caper",
-        price: "$12.00",
+        price: 1200,
         image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=400&q=80"
     },
     {
-        id: 2,
+        id: "w2",
         name: "Pepperoni Pizza",
         description: "pepperoni, mozzarella cheese, tomato sauce",
-        price: "$15.00",
+        price: 1500,
         image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=400&q=80"
     },
     {
-        id: 3,
+        id: "w3",
         name: "Veggie Pizza",
         description: "tomatoes, onions, capsicum, olives, mozzarella",
-        price: "$13.00",
+        price: 1300,
         image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=400&q=80"
     },
     {
-        id: 4,
+        id: "w4",
         name: "Cheese Pizza",
         description: "cheese overload with tomato sauce",
-        price: "$14.00",
+        price: 1400,
         image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=400&q=80"
     },
     {
-        id: 5,
+        id: "w5",
         name: "Margherita Pizza",
         description: "classic margherita with fresh basil",
-        price: "$11.00",
+        price: 1100,
         image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=400&q=80"
     }
 ];
@@ -68,6 +68,7 @@ const WeeklyPizzaCards = () => {
                         <SwiperSlide key={pizza.id} className="flex justify-center py-10 w-full">
                         <div className="relative left-1/2 transform -translate-x-1/2 mr-44 sm:mr-0">
                           <WeeklyPizzaCard
+                            id={pizza.id}
                             name={pizza.name}
                             description={pizza.description}
                             price={pizza.price}

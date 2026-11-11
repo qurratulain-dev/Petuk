@@ -3,24 +3,26 @@ import Heading from './Heading'
 import { TbToolsKitchen2, TbTruckDelivery } from 'react-icons/tb'
 import { BsAward } from 'react-icons/bs'
 import { FaShop } from 'react-icons/fa6'
+import { motion } from 'framer-motion'
+import { Stagger, StaggerItem } from './motion/Reveal'
 
 const JoinPartner = () => {
     return (
         <section className='bg-[#fcfcfc]'>
             <div className='max-w-6xl mx-auto px-5 py-10 relative'>
                 <Heading title={"Join as Partner"}/>
-                <div className='flex justify-center items-center gap-10 flex-col md:flex-row overflow-hidden'>
+                <Stagger className='flex justify-center items-center gap-10 flex-col md:flex-row overflow-hidden'>
                     {
                         joinPartnerArray.map((item) => (
-                            <div className='bg-white shadow p-10 flex flex-col items-center justify-center text-center relative mt-16 mb-5 transition-transform duration-300 hover:scale-105'>
+                            <StaggerItem key={item.id} whileHover={{ y: -8 }} className='bg-white shadow p-10 flex flex-col items-center justify-center text-center relative mt-16 mb-5'>
                                 <div className='bg-white w-28 h-28 text-6xl text-orange-500 flex justify-center items-center rounded-full absolute -top-14'>{item.icon}</div>
                                 <h2 className='text-zin font-semibold text-xl mt-5'>{item.name}</h2>
                                 <p className='text-zinc-500 text-sm my-5 '>{item.para}</p>
-                                <button className='px-4 py-2 text-white bg-orange-500 flex justify-center items-center gap-2 rounded-full'>{item.smallicon}{item.button}</button>
-                            </div>
+                                <motion.button whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} className='px-4 py-2 text-white bg-orange-500 flex justify-center items-center gap-2 rounded-full'>{item.smallicon}{item.button}</motion.button>
+                            </StaggerItem>
                         ))
                     }
-                </div>
+                </Stagger>
             </div>
         </section>
     )

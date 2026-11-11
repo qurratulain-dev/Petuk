@@ -9,21 +9,22 @@ import WeHate from '../components/WeHate'
 import LatestNews from '../components/LatestNews_Blog/LatestNews'
 import JoinPartner from '../components/JoinPartner'
 import Subscribe from '../components/Subscribe'
+import { Reveal } from '../components/motion/Reveal'
 
 const Home = () => {
   return (
     <>
-    <Hero />
-    <SelectedShops />
-    <WeeklyPizzaCards />
-    <FreshPizza />
-    <FastestDelivery />
-    <BestCheese />
-    <WeHate />
-    <LatestNews />
-    <JoinPartner />
-    <Subscribe />
-  </>
+      <Hero />
+      <SelectedShops />
+      <Reveal><WeeklyPizzaCards /></Reveal>
+      <FreshPizza />
+      <FastestDelivery />
+      <BestCheese />
+      <Reveal><WeHate /></Reveal>
+      <Reveal><LatestNews /></Reveal>
+      <Reveal><JoinPartner /></Reveal>
+      <Reveal><Subscribe /></Reveal>
+    </>
   )
 }
 

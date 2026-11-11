@@ -2,6 +2,7 @@ import React from 'react'
 import Subscribe from '../components/Subscribe'
 import LatestNews from '../components/LatestNews_Blog/LatestNews'
 import Heading from '../components/Heading'
+import { Reveal } from '../components/motion/Reveal'
 
 const Blog = () => {
   return (
@@ -11,7 +12,7 @@ const Blog = () => {
         <Heading title={"Our Blog"} />
       </div>
       <LatestNews />
-      <Subscribe />
+      <Reveal><Subscribe /></Reveal>
     </div>
    </>
   )

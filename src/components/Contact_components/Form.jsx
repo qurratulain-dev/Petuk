@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import contactImg from '../../assets/form.png';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const Form = () => {
     const [formData, setFormData] = useState({
@@ -90,14 +91,17 @@ const Form = () => {
                         ></textarea>
                     </div>
                     {/* submit hony ya na hony py Message */}
-                    {error && <p className='text-red-500 mb-4'>{error}</p>}
-                    {success && <p className='text-green-500 mb-4'>{success}</p>}
+                    <AnimatePresence>
+                        {error && <motion.p key='e' initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className='text-red-500 mb-4'>{error}</motion.p>}
+                        {success && <motion.p key='s' initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className='text-green-500 mb-4'>{success}</motion.p>}
+                    </AnimatePresence>
                     {/* Submit Button */}
-                    <button
+                    <motion.button
+                        whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
                         type='submit'
                         className='bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600 transition-colors duration-300'>
                         Send Message
-                    </button>
+                    </motion.button>
                 </form>
 
                 {/* Image Section */}

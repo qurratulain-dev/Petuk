@@ -2,6 +2,7 @@ import React from 'react'
 import wehate from '../assets/wehate.jpg'
 import { TiTick } from 'react-icons/ti'
 import { MdOutlinePhoneInTalk } from 'react-icons/md'
+import { motion } from 'framer-motion'
 const WeHate = () => {
     return (
         <section className='bg-[#fcfcfc]'>
@@ -24,13 +25,13 @@ const WeHate = () => {
                 </div>
                 <div className='flex-1 flex flex-col relative'>
                     {/* pic call box */}
-                    <div className='flex justify-center items-center gap-2 bg-white -rotate-12 rounded shadow-lg p-3 md:w-[20vw] absolute  -top-5'>
+                    <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }} className='flex justify-center items-center gap-2 bg-white -rotate-12 rounded shadow-lg p-3 md:w-[20vw] absolute  -top-5 z-10'>
                     <MdOutlinePhoneInTalk className='text-5xl text-orange-500'/>
                         <div >
                             <p className='text-zinc-500 text-sm font-light capitalize'>call for order</p>
                             <p className='text-zinc-800 text-2xl font-bold'>1(789)00123</p>
                         </div>
-                    </div>
+                    </motion.div>
                     <img src={wehate} alt="" className='h-[70vh] w-[80vw] rounded-full'/>
                 </div>
             </div>

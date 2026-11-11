@@ -2,6 +2,7 @@ import React from 'react'
 import Heading from '../components/Heading'
 import Form from '../components/Contact_components/Form'
 import ContactCards from '../components/Contact_components/ContactCards'
+import { Reveal } from '../components/motion/Reveal'
 
 const Contact = () => {
   return (
@@ -10,7 +11,7 @@ const Contact = () => {
         <div className='flex flex-col items-start max-w-6xl mx-auto px-5'>
         <Heading title={"Contact Us"} />
         </div>
-        <Form />
+        <Reveal><Form /></Reveal>
         <ContactCards />
    </div>
   </>

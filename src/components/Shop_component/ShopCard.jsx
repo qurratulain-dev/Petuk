@@ -1,51 +1,50 @@
 import React, { useState } from 'react'
-import hero from '../../assets/hero.webp'
-import { AiFillHeart, AiOutlineMinus, AiOutlinePlus, AiOutlineShoppingCart } from 'react-icons/ai';
+import { motion } from 'framer-motion'
+import { AiFillHeart, AiFillStar } from 'react-icons/ai';
+import FoodImage from '../FoodImage';
+import AddToCart from '../AddToCart';
+import { formatPrice } from '../../utils/format';
 
-const ShopCard = () => {
+const ShopCard = ({ item }) => {
     const [wishlisted, setWishlisted] = useState(false);
 
-    const toggleWishlist = () => {
-        setWishlisted(!wishlisted);
-    };
-
     return (
-        <div className='flex-1 mx-auto flex shadow px-5 py-6 rounded-lg relative'>
-            <div
-                className={`absolute top-px right-1 cursor-pointer transition ${wishlisted ? 'text-orange-500' : 'text-gray-400'
-                    }`}
-                onClick={toggleWishlist}>
+        <motion.div
+            layout
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.35 }}
+            whileHover={{ y: -6 }}
+            className='flex gap-4 shadow hover:shadow-lg bg-white px-5 py-6 rounded-lg relative transition-shadow'
+        >
+            <motion.button
+                animate={{ scale: wishlisted ? [1, 1.4, 1] : 1 }}
+                onClick={() => setWishlisted(!wishlisted)}
+                aria-label="Add to wishlist"
+                className={`absolute top-2 right-2 cursor-pointer transition-colors ${wishlisted ? 'text-orange-500' : 'text-gray-400'}`}
+            >
                 <AiFillHeart size={25} />
-            </div>
-            <div className="basis-[35%] overflow-hidden rounded-lg flex justify-start items-center">
-                <img
-                    src={hero}
-                    alt=""
-                    className="w-full h-[100px] object-cover transition-transform duration-300 hover:scale-105" />
+            </motion.button>
+            <div className="basis-[35%] shrink-0 overflow-hidden rounded-lg">
+                <FoodImage
+                    src={item.img}
+                    alt={item.name}
+                    className="w-full h-[130px] object-cover transition-transform duration-500 hover:scale-110" />
             </div>
             <div className='basis-[65%]'>
-                <h2 className="text-lg font-bold text-gray-800">Chese Pizza</h2>
-                <p className="text-[12px] text-gray-500 my-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, ipsum?</p>
-                <p className="text-xl font-bold text-orange-500">$56.00</p>
-                <div className='flex gap-5'>
-                    <div className="flex items-center gap-3 my-2">
-                        <button
-                            className="border border-orange-500  w-8 h-8 rounded-full flex items-center justify-center hover:bg-orange-50 transition">
-                            <AiOutlineMinus size={16} />
-                        </button>
-                        <span className="text-gray-800 font-medium text-lg">1</span>
-                        <button
-                            className="border border-orange-500  w-8 h-8 rounded-full flex items-center justify-center hover:bg-orange-50 transition">
-                            <AiOutlinePlus size={16} />
-                        </button>
-                    </div>
-                    <button
-                        className="flex items-center gap-2 text-white bg-orange-500 hover:bg-black px-4 py-2 rounded-full transition-all ">
-                        <AiOutlineShoppingCart size={20} /> Add to cart
-                    </button>
+                <div className='flex items-center gap-2'>
+                    <h2 className="text-lg font-bold text-gray-800">{item.name}</h2>
                 </div>
+                <p className='flex items-center gap-1 text-xs text-amber-500'>
+                    <AiFillStar /> {item.rating}
+                    <span className='ml-2 text-[10px] bg-orange-100 text-orange-500 px-2 py-0.5 rounded-full'>{item.category}</span>
+                </p>
+                <p className="text-[12px] text-gray-500 my-2">{item.description}</p>
+                <p className="text-xl font-bold text-orange-500">{formatPrice(item.price)}</p>
+                <AddToCart item={{ id: item.id, name: item.name, price: item.price, img: item.img }} className="mt-1" />
             </div>
-        </div>
+        </motion.div>
     )
 }
 

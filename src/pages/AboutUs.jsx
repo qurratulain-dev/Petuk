@@ -6,23 +6,21 @@ import JoinPartner from '../components/JoinPartner'
 import Subscribe from '../components/Subscribe'
 import WhatWeDo from '../components/About_components/WhatWeDo'
 import Heading from '../components/Heading'
+import { Reveal } from '../components/motion/Reveal'
 
 const AboutUs = () => {
   return (
-    <>
-      <div className='bg-[#fcfcfc]'>
-        <div className=' max-w-6xl mx-auto px-5 flex flex-col items-start'>
-          <Heading title={"Our Blog"} />
-        </div>
-        <OurJourney />
-        <WhatWeDo />
-        <ThreeSteps title={"3 Steps to Delivery"} />
-        <BestCheese />
-        <JoinPartner />
-        <Subscribe />
+    <div className='bg-[#fcfcfc] pt-[20vh]'>
+      <div className=' max-w-6xl mx-auto px-5 flex flex-col items-start'>
+        <Heading title={"About Us"} />
       </div>
-
-    </>
+      <Reveal><OurJourney /></Reveal>
+      <Reveal><WhatWeDo /></Reveal>
+      <ThreeSteps title={"3 Steps to Delivery"} />
+      <BestCheese />
+      <Reveal><JoinPartner /></Reveal>
+      <Reveal><Subscribe /></Reveal>
+    </div>
   )
 }
 

@@ -1,53 +1,32 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { motion } from 'framer-motion'
 
-const ButtonsFilter = () => {
-    const [activetab, setActivetab]= useState('All')
-
+const ButtonsFilter = ({ active, onChange }) => {
   return (
-    <div>
-        <div className='max-w-6xl mx-auto px-5 py-5'>
-                <div className='flex gap-5 flex-wrap justify-center items-center lg:justify-normal'>
-                    {
-                        tabButton.map((tab) => (
-                            <button key={tab.id}
-                            onClick={()=>{setActivetab(tab.tabName)
-
-                            }}
-                                className={`px-3 py-2 rounded-lg font-semibold transition duration-300 text-black
-                                    ${activetab===tab.tabName
-                                        ? 'bg-orange-500 text-white'
-                                        : 'bg-zinc-200  '
-                                    }`}>
-                                {tab.tabName}
-                            </button>
-                        ))
-                    }
-                </div>
-            </div>
-      
+    <div className='max-w-6xl mx-auto px-5 py-5'>
+      <div className='flex gap-3 flex-wrap justify-center items-center lg:justify-normal'>
+        {tabButton.map((tab) => (
+          <button
+            key={tab}
+            onClick={() => onChange(tab)}
+            className={`relative px-4 py-2 rounded-lg font-semibold transition-colors duration-300 ${active === tab ? 'text-white' : 'text-black bg-zinc-200 hover:bg-zinc-300'}`}
+          >
+            {/* orange pill slides between the tabs */}
+            {active === tab && (
+              <motion.span
+                layoutId="shop-tab"
+                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                className='absolute inset-0 bg-orange-500 rounded-lg'
+              />
+            )}
+            <span className='relative z-10'>{tab}</span>
+          </button>
+        ))}
+      </div>
     </div>
   )
 }
-const tabButton = [
-    {
-        id: 1,
-        tabName: "All"
-    },
-    {
-        id: 2,
-        tabName: "Lunch"
-    },
-    {
-        id: 3,
-        tabName: "Breakfast"
-    },
-    {
-        id: 4,
-        tabName: "Dinner"
-    },
-    {
-        id: 5,
-        tabName: "Soup"
-    },
-]
+
+const tabButton = ["All", "Breakfast", "Lunch", "Dinner", "Pizza", "Snacks"]
+
 export default ButtonsFilter

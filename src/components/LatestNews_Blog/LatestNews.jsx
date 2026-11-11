@@ -5,6 +5,8 @@ import nature from '../../assets/nature.jpg'
 import { FiLoader } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { BlogData } from './BlogData.js';
+import { motion } from 'framer-motion'
+import { Stagger, StaggerItem } from '../motion/Reveal'
 
 
 const LatestNews = () => {
@@ -15,10 +17,10 @@ const displayedNews=showAll?BlogData:BlogData.slice(0,4);
         <section className='bg-[#f9f9f9] '>
             <div className='max-w-6xl mx-auto px-5 py-10 flex flex-col justify-center items-center'>
                 <Heading title={"Latest News"} />
-                <div className='flex justify-center items-center gap-5 mt-10 text-white  flex-wrap'>
+                <Stagger className='flex justify-center items-center gap-5 mt-10 text-white  flex-wrap'>
                     {
                         displayedNews.map((item) => (
-                            <div className='w-[250px] h-[300px] relative mb-20'>
+                            <StaggerItem key={item.id} whileHover={{ y: -8 }} className='w-[250px] h-[300px] relative mb-20'>
                                 <div >
                                     <img src={nature} alt="" className='rounded-xl object-cover' />
                                 </div>
@@ -32,13 +34,13 @@ const displayedNews=showAll?BlogData:BlogData.slice(0,4);
                                         <button className='text-sm border border-white rounded-full px-2 py-1 '>{item.button}</button>
                                     </div>
                                 </div>
-                            </div>
+                            </StaggerItem>
                         ))
                     }
-                </div>
+                </Stagger>
                 <Link to="/blog">
-                    <button onClick={()=>setShowAll(true)}
-                    className='text-sm text-white bg-orange-500 px-4 py-2 rounded-full font-semibold flex justify-center items-center gap-2 '><FiLoader /> Load more posts</button>
+                    <motion.button whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.95 }} onClick={()=>setShowAll(true)}
+                    className='text-sm text-white bg-orange-500 px-4 py-2 rounded-full font-semibold flex justify-center items-center gap-2 '><FiLoader /> Load more posts</motion.button>
                 </Link>
 
             </div>

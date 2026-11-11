@@ -105,11 +105,6 @@ const Nav = () => {
             <CartIcon />
           </div>
           <div className="hidden md:flex md:space-x-8">
-            <div className="flex flex-col text-right">
-              <p className="text-[10px] text-zinc-500">call for order</p>
-              <p className="text-2xl text-orange-500">1-231-675</p>
-            </div>
-            <div className="hidden border-l border-orange-500 md:flex" />
             <div className="flex items-center space-x-3">
               <CartIcon />
             </div>

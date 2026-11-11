@@ -7,7 +7,7 @@ import ImageReveal from './ui/ImageReveal'
 const WeHate = () => {
     return (
         <section className='bg-[#fcfcfc]'>
-            <div className='max-w-6xl mx-auto px-10 py-20 flex gap-10 flex-col-reverse md:flex-row'>
+            <div className='max-w-6xl mx-auto px-5 sm:px-10 py-20 flex gap-10 flex-col-reverse md:flex-row'>
                 <div className='flex-1 flex flex-col'>
                     <h2 className='text-zinc-800 text-3xl font-bold'>We Hate Late!</h2>
                     <p className='text-sm text-zinc-500 my-4'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione corporis eveniet consectetur earum, rem voluptatem.</p>
@@ -26,11 +26,11 @@ const WeHate = () => {
                 </div>
                 <div className='flex-1 flex flex-col relative'>
                     {/* pic call box */}
-                    <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }} className='flex justify-center items-center gap-2 bg-white -rotate-12 rounded shadow-lg p-3 md:w-[20vw] absolute  -top-5 z-10'>
-                    <MdOutlinePhoneInTalk className='text-5xl text-orange-500'/>
+                    <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }} className='absolute -top-5 left-1/2 z-10 flex w-[calc(100%-1rem)] max-w-[18rem] -translate-x-1/2 items-center justify-center gap-2 rounded bg-white p-3 shadow-lg -rotate-12 md:left-auto md:right-0 md:w-[20vw] md:max-w-none md:translate-x-0'>
+                    <MdOutlinePhoneInTalk className='shrink-0 text-4xl text-orange-500 sm:text-5xl'/>
                         <div >
                             <p className='text-zinc-500 text-sm font-light capitalize'>call for order</p>
-                            <p className='text-zinc-800 text-2xl font-bold'>1(789)00123</p>
+                            <p className='text-lg font-bold text-zinc-800 sm:text-2xl'>1(789)00123</p>
                         </div>
                     </motion.div>
                     <ImageReveal

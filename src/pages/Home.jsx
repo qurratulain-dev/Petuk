@@ -1,5 +1,4 @@
 import Hero from '../components/Hero'
-import Marquee from '../components/sections/Marquee'
 import Stats from '../components/sections/Stats'
 import Testimonials from '../components/sections/Testimonials'
 import SelectedShops from '../components/SelectedShops'
@@ -17,7 +16,6 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <Marquee />
       <SelectedShops />
       <Stats />
       <Reveal>

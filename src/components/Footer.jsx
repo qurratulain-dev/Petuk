@@ -1,7 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { GiFullPizza } from 'react-icons/gi'
-import appStore from '../assets/app_store.png'
-import playStore from '../assets/play_store.png'
 
 const Footer = () => {
   const reduce = useReducedMotion()
@@ -21,15 +19,6 @@ const Footer = () => {
               </li>
             ))}
           </ul>
-          <h2 className="mt-10 py-4 text-xl font-bold text-zinc-800">Ready to get started?</h2>
-          <div className="flex gap-2">
-            <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">
-              <img src={playStore} alt="Play Store" className="h-10 w-28" />
-            </a>
-            <a href="https://www.apple.com/app-store/" target="_blank" rel="noopener noreferrer">
-              <img src={appStore} alt="App Store" className="h-10 w-28" />
-            </a>
-          </div>
         </div>
 
         <div className="flex basis-[40%] justify-around">

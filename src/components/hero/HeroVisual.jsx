@@ -44,7 +44,7 @@ const HeroVisual = () => {
   }, [reduce, rawX, rawY])
 
   return (
-    <div className="relative mx-auto flex w-full max-w-[560px] items-center justify-center py-10">
+    <div className="relative mx-auto flex w-full max-w-[560px] items-center justify-center px-2 py-8 sm:py-10">
       <IngredientField mx={ingredientX} my={ingredientY} />
 
       {/* soft glow + dashed orbit */}
@@ -64,12 +64,12 @@ const HeroVisual = () => {
             <motion.img
               src={HERO_IMAGE}
               alt="Hot pizza"
-              className="w-full max-w-[480px] drop-shadow-2xl"
+            className="w-full max-w-[480px] drop-shadow-2xl"
               animate={reduce ? {} : { rotate: 360 }}
               transition={{ repeat: Infinity, duration: 40, ease: 'linear' }}
             />
           ) : (
-            <div className="h-[300px] w-[300px] overflow-hidden rounded-full ring-8 ring-orange-500/20 shadow-2xl sm:h-[400px] sm:w-[400px]">
+            <div className="h-[min(300px,78vw)] w-[min(300px,78vw)] overflow-hidden rounded-full ring-8 ring-orange-500/20 shadow-2xl sm:h-[400px] sm:w-[400px]">
               <img
                 src={HERO_IMAGE}
                 alt="Hot pizza"

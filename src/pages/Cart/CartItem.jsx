@@ -37,9 +37,9 @@ const CartItem = () => {
     }
 
     return (
-        <div className='max-w-6xl mx-auto px-5 py-5 mt-10 flex justify-center items-start gap-10 flex-col md:flex-row'>
-            <div className='md:basis-[70%] w-full'>
-                <div className="grid grid-cols-[1fr_1.5fr_1fr_1fr_1fr_0.5fr] text-xs lg:text-sm font-semibold mb-3">
+        <div className='max-w-6xl mx-auto px-5 py-5 mt-10 flex justify-center items-start gap-8 flex-col lg:flex-row lg:gap-10'>
+            <div className='w-full lg:basis-[70%]'>
+                <div className="mb-3 hidden grid-cols-[100px_minmax(0,1.5fr)_0.8fr_1.2fr_1fr_auto] text-xs font-semibold sm:grid lg:text-sm">
                     <p>Items</p>
                     <p>Title</p>
                     <p>Price</p>
@@ -56,14 +56,17 @@ const CartItem = () => {
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 60, transition: { duration: 0.25 } }}
-                            className="grid grid-cols-[1fr_1.5fr_1fr_1fr_1fr_0.5fr] items-center gap-1 border-b border-gray-200 py-3 text-xs lg:text-base"
+                            className="grid grid-cols-[64px_minmax(0,1fr)_auto] items-center gap-x-3 gap-y-2 border-b border-gray-200 py-3 text-xs sm:grid-cols-[100px_minmax(0,1.5fr)_0.8fr_1.2fr_1fr_auto] sm:gap-2 lg:text-base"
                         >
-                            <div className="w-[70px] h-[70px] lg:w-[100px] lg:h-[100px] overflow-hidden rounded">
+                            <div className="row-span-2 h-16 w-16 overflow-hidden rounded sm:row-span-1 sm:h-20 sm:w-20 lg:h-[100px] lg:w-[100px]">
                                 <FoodImage src={item.img} alt={item.name} className="w-full h-full object-cover" />
                             </div>
-                            <p className="text-gray-600 font-medium pr-1">{item.name}</p>
-                            <p className="text-gray-600">{formatPrice(item.price)}</p>
-                            <div className="flex items-center gap-1 lg:gap-2">
+                            <div className="col-start-2 row-start-1 min-w-0 sm:col-auto sm:row-auto">
+                                <p className="truncate pr-1 font-medium text-gray-600">{item.name}</p>
+                                <p className="mt-1 text-[11px] text-gray-500 sm:hidden">{formatPrice(item.price)} each</p>
+                            </div>
+                            <p className="hidden text-gray-600 sm:block">{formatPrice(item.price)}</p>
+                            <div className="col-start-2 row-start-2 flex items-center gap-1 sm:col-auto sm:row-auto lg:gap-2">
                                 <motion.button whileTap={{ scale: 0.85 }} onClick={() => setQty(item.id, item.qty - 1)}
                                     aria-label="Decrease quantity"
                                     className="border border-orange-500 w-6 h-6 lg:w-7 lg:h-7 rounded-full flex items-center justify-center hover:bg-orange-50 transition">
@@ -76,10 +79,10 @@ const CartItem = () => {
                                     <AiOutlinePlus size={14} />
                                 </motion.button>
                             </div>
-                            <p className="font-semibold"><AnimatedNumber value={item.price * item.qty} /></p>
+                            <p className="col-start-3 row-start-2 whitespace-nowrap text-right font-semibold sm:col-auto sm:row-auto"><AnimatedNumber value={item.price * item.qty} /></p>
                             <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} onClick={() => removeItem(item.id)}
                                 aria-label={`Remove ${item.name}`}
-                                className="cursor-pointer text-red-500 hover:text-red-700">
+                                className="col-start-3 row-start-1 justify-self-end cursor-pointer text-red-500 hover:text-red-700 sm:col-auto sm:row-auto">
                                 <AiOutlineDelete size={20} />
                             </motion.button>
                         </motion.div>
@@ -92,7 +95,7 @@ const CartItem = () => {
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
-                className="md:basis-[30%] w-full bg-gray-50 p-5 rounded-md shadow-md md:sticky md:top-[16vh]"
+                className="w-full bg-gray-50 p-5 rounded-md shadow-md lg:sticky lg:top-24 lg:basis-[30%]"
             >
                 <h2 className="text-lg font-semibold mb-4">Cart Total</h2>
                 <div className="mb-4 rounded-lg bg-orange-50 p-3">

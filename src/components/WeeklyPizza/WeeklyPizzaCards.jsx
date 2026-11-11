@@ -65,8 +65,7 @@ const WeeklyPizzaCards = () => {
 
                     }}>
                     {pizzas.map(pizza => (
-                        <SwiperSlide key={pizza.id} className="flex justify-center py-10 w-full">
-                        <div className="relative left-1/2 transform -translate-x-1/2 mr-44 sm:mr-0">
+                        <SwiperSlide key={pizza.id} className="flex w-full justify-center py-10">
                           <WeeklyPizzaCard
                             id={pizza.id}
                             name={pizza.name}
@@ -74,7 +73,6 @@ const WeeklyPizzaCards = () => {
                             price={pizza.price}
                             image={pizza.image}
                           />
-                        </div>
                       </SwiperSlide>
                       
                     ))}

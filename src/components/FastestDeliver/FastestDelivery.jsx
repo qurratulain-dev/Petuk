@@ -1,134 +1,75 @@
-import { useRef } from 'react'
-import {
-  motion,
-  useMotionValue,
-  useMotionValueEvent,
-  useReducedMotion,
-  useScroll,
-} from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import Heading from '../Heading'
 import deliveryboy from '../../assets/deliveryboy.avif'
-import { ImSpoonKnife } from 'react-icons/im'
-import { FaMoneyBill1Wave } from 'react-icons/fa6'
-import { TbTruckDelivery } from 'react-icons/tb'
-import { Stagger, StaggerItem } from '../motion/Reveal'
-
-const RouteScooter = () => {
-  const routeRef = useRef(null)
-  const pathRef = useRef(null)
-  const reduce = useReducedMotion()
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-  const { scrollYProgress } = useScroll({
-    target: routeRef,
-    offset: ['start end', 'end start'],
-  })
-
-  useMotionValueEvent(scrollYProgress, 'change', (progress) => {
-    if (reduce || !pathRef.current) return
-    const path = pathRef.current
-    const length = path.getTotalLength()
-    const point = path.getPointAtLength(length * Math.min(Math.max(progress, 0), 1))
-    x.set(point.x)
-    y.set(point.y)
-  })
-
-  return (
-    <div ref={routeRef} className="relative mt-8 h-28 w-full">
-      <svg viewBox="0 0 1000 110" className="h-full w-full" aria-hidden="true">
-        <path
-          ref={pathRef}
-          d="M25 85 C 200 15, 340 110, 500 55 S 780 5, 975 75"
-          fill="none"
-          stroke="#fb923c"
-          strokeWidth="3"
-          strokeDasharray="2 14"
-          strokeLinecap="round"
-        />
-        <motion.g style={{ x, y }}>
-          <circle r="20" fill="#f97316" opacity="0.12" />
-          <text x="0" y="7" fontSize="22" textAnchor="middle">
-            🛵
-          </text>
-        </motion.g>
-      </svg>
-    </div>
-  )
-}
+import { FREE_DELIVERY_THRESHOLD, formatPrice, getDeliveryFee } from '../../utils/format'
+import ImageReveal from '../ui/ImageReveal'
+import { Reveal } from '../motion/Reveal'
 
 const FastestDelivery = () => {
   const reduce = useReducedMotion()
+  const deliveryFee = getDeliveryFee(0)
 
   return (
-    <section className="bg-[#fcfcfc]">
-      <div className="mx-auto max-w-6xl px-5 py-16">
-        <Heading title="Fast Delivery" />
-        <div className="mt-6 flex flex-col items-center gap-10 md:flex-row">
-          <div className="flex-1">
-            <motion.div
-              initial={reduce ? false : { opacity: 0, clipPath: 'inset(0 100% 0 0)' }}
-              whileInView={{ opacity: 1, clipPath: 'inset(0 0% 0 0)' }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              className="overflow-hidden rounded-3xl"
-            >
-              <motion.img
+    <section className="overflow-hidden bg-[#fff7ed]">
+      <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <Reveal className="relative">
+            <div className="relative">
+              <ImageReveal
                 src={deliveryboy}
-                alt="Delivery rider"
-                className="h-[55vh] w-full object-cover md:w-[40vw]"
-                animate={reduce ? {} : { y: [0, -12, 0] }}
-                transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
-                data-cursor="View"
+                alt="Petuk delivery rider bringing a fresh order"
+                className="h-[24rem] w-full rounded-[2rem] sm:h-[32rem]"
+                radius="rounded-[2rem]"
+                cursor="View"
               />
-            </motion.div>
-          </div>
+              <motion.div
+                initial={reduce ? false : { opacity: 0, y: 18, rotate: -5 }}
+                whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+                viewport={{ once: true }}
+                transition={{ type: 'spring', stiffness: 180, damping: 18, delay: 0.2 }}
+                className="absolute -bottom-5 right-4 rounded-2xl bg-white px-5 py-4 shadow-xl sm:-right-6"
+              >
+                <p className="text-xs font-medium text-zinc-500">Fresh from our oven</p>
+                <p className="text-lg font-bold text-zinc-800">On its way to you <span aria-hidden="true">🛵</span></p>
+              </motion.div>
+            </div>
+          </Reveal>
 
-          <div className="flex-1">
-            <Stagger stagger={0.18} className="flex flex-col justify-center gap-5 overflow-hidden">
-              {FastestDeliverArray.map((item) => (
-                <StaggerItem
-                  key={item.id}
-                  className="relative flex items-center gap-14 rounded-xl bg-white px-6 py-5 shadow-sm transition-transform duration-300 hover:scale-[1.03]"
-                >
-                  <div className="flex items-center justify-center">
-                    <span className="absolute left-6 h-8 w-8 rotate-90 rounded-full rounded-bl-lg rounded-tl-5xl rounded-tr-2xl bg-orange-500/20" />
-                    <div className="absolute left-5 text-3xl text-orange-500">{item.icon}</div>
-                  </div>
-                  <div>
-                    <h2 className="text-md font-semibold text-zinc-800">{item.name}</h2>
-                    <p className="text-sm text-zinc-500">{item.para}</p>
-                  </div>
-                </StaggerItem>
-              ))}
-            </Stagger>
+          <div className="pt-4 lg:pt-0">
+            <p className="mb-2 text-center text-xs font-bold uppercase tracking-[0.25em] text-orange-500 lg:text-left">Good food, no long wait</p>
+            <Heading title="Fast Delivery" />
+            <p className="mx-auto mt-2 max-w-lg text-center text-sm leading-7 text-zinc-600 lg:mx-0 lg:text-left sm:text-base">
+              Your favourites are made fresh, packed with care and sent straight to your door.
+            </p>
+
+            <div className="mt-8 grid grid-cols-2 gap-3">
+              <div className="rounded-2xl bg-white p-5 shadow-sm">
+                <p className="text-3xl font-extrabold text-orange-500">~50</p>
+                <p className="mt-1 text-xs font-medium text-zinc-600 sm:text-sm">minutes to your door</p>
+              </div>
+              <div className="rounded-2xl bg-white p-5 shadow-sm">
+                <p className="text-3xl font-extrabold text-orange-500">{formatPrice(deliveryFee)}</p>
+                <p className="mt-1 text-xs font-medium text-zinc-600 sm:text-sm">delivery fee</p>
+              </div>
+              <div className="col-span-2 rounded-2xl bg-zinc-900 p-5 text-white">
+                <p className="text-xs font-semibold uppercase tracking-wider text-orange-300">A little extra love</p>
+                <p className="mt-1 text-sm text-white/85">
+                  Delivery is on us when your order reaches {formatPrice(FREE_DELIVERY_THRESHOLD)}.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-7 text-center lg:text-left">
+              <Link to="/shop" className="btn-sweep inline-flex rounded-full bg-orange-500 px-7 py-3 text-sm font-semibold text-white">
+                Order your favourites <span className="ml-2" aria-hidden="true">↗</span>
+              </Link>
+            </div>
           </div>
         </div>
-
-        <RouteScooter />
       </div>
     </section>
   )
 }
-
-const FastestDeliverArray = [
-  {
-    id: 1,
-    icon: <ImSpoonKnife />,
-    name: 'Order food from the menu',
-    para: 'Pick your favourites and add them to the cart in one tap.',
-  },
-  {
-    id: 2,
-    icon: <FaMoneyBill1Wave />,
-    name: 'Pay your food bill',
-    para: 'Cash on delivery or a mobile wallet — your choice.',
-  },
-  {
-    id: 3,
-    icon: <TbTruckDelivery />,
-    name: 'Get delivery within 50 minutes',
-    para: 'Live tracking keeps you posted until it reaches your door.',
-  },
-]
 
 export default FastestDelivery

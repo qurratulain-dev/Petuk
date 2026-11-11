@@ -1,65 +1,82 @@
-import React from 'react'
-import { HiMiniReceiptPercent } from 'react-icons/hi2'
-import hero from '../assets/hero.webp'
-import { Reveal, Stagger, StaggerItem } from './motion/Reveal'
+import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import Heading from './Heading'
+import { Reveal } from './motion/Reveal'
 import ImageReveal from './ui/ImageReveal'
+import hero from '../assets/hero.webp'
+import slice from '../assets/slice.jpg'
+import cheese from '../assets/cheese.jpg'
 
-const SelectedShops = () => {
-  return (
-    <section className='bg-[#fcfcfc]'>
-      <div className='max-w-6xl mx-auto px-10 py-10 '>
-        <Reveal>
-        <div className='flex justify-center items-center bg-orange-100 gap-5 my-10 p-2 rounded-lg border border-dashed border-orange-500'>
-          <div className='flex gap-1 text-orange-500 font-bold text-2xl'>
-            <div className='text transform -rotate-90'>
-              <HiMiniReceiptPercent size={28} />
-            </div>
-            <p>BF050</p>
-          </div>
-          <p className='text-zinc-500 text-sm'>Get $50 discount from our selected shops</p>
-        </div>
-        </Reveal>
-        <Stagger className='flex flex-col md:flex-row justify-center items-center gap-10 mt-20'>
-          {
-            selectedShopsArray.map((item) => (
-              <StaggerItem key={item.id} whileHover={{ y: -8 }} className='bg-orange-50 border border-dashed border-orange-500 flex-1 rounded-lg mt-5 w-full'>
-                <div className='flex justify-end items-start overflow-hidden rounded-tr-lg'>
-                  <ImageReveal
-                    src={item.image}
-                    alt={item.name}
-                    className='h-40 w-56 lg:w-[300px]'
-                    radius='rounded-tr-lg'
-                    cursor='View'
-                  />
-                </div>
-                <div className='flex flex-col px-10 -pt-10'>
-                  <p className='text-3xl text-orange-500 font-bold'>{item.date}</p>
-                  <h2 className='text-2xl text-zinc-800 font-bold my-2'>{item.name}</h2>
-                  <p className='text-sm text-zinc-500 font-light mb-10'>{item.para}</p>
-                </div>
-              </StaggerItem>
-            ))
-          }
-        </Stagger>
-
-      </div>
-    </section>
-  )
-}
-const selectedShopsArray = [
+const features = [
   {
-    id: 1,
     image: hero,
-    date: "14th July",
-    name: "Special Pizza Party",
-    para: "Get free home delivery today",
+    eyebrow: 'THE SIGNATURE',
+    title: 'A proper, cheesy classic',
+    description: 'Golden crust, rich tomato and the kind of cheese pull worth sharing.',
+    className: 'md:col-span-7 md:row-span-2',
   },
   {
-    id: 2,
-    image: hero,
-    date: "10% off",
-    name: "Everet Pizza today",
-    para: "Get free home delivery today",
+    image: slice,
+    eyebrow: 'FRESH FROM THE OVEN',
+    title: 'Made for the first bite',
+    description: 'Prepared fresh and packed while it is still hot.',
+    className: 'md:col-span-5',
+  },
+  {
+    image: cheese,
+    eyebrow: 'GOOD INGREDIENTS',
+    title: 'Simple things, done well',
+    description: 'Big flavour starts with ingredients we love.',
+    className: 'md:col-span-5',
   },
 ]
+
+const SelectedShops = () => (
+  <section className="bg-[#fcfcfc]">
+    <div className="mx-auto max-w-6xl px-5 py-14 sm:py-20">
+      <Reveal>
+        <div className="mx-auto mb-8 max-w-2xl text-center">
+          <p className="mb-2 text-xs font-bold uppercase tracking-[0.25em] text-orange-500">A little slice of Petuk</p>
+          <Heading title="Made fresh. Made to share." />
+          <p className="mt-3 text-sm text-zinc-500 sm:text-base">
+            From the first stretch of dough to the last cheesy bite, good pizza is worth gathering around.
+          </p>
+        </div>
+      </Reveal>
+
+      <div className="grid gap-4 md:grid-cols-12 md:grid-rows-2">
+        {features.map((feature, index) => (
+          <motion.article
+            key={feature.title}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.55, delay: index * 0.1 }}
+            className={`group relative min-h-64 overflow-hidden rounded-3xl bg-zinc-900 ${feature.className} ${index === 0 ? 'md:min-h-[34rem]' : 'md:min-h-64'}`}
+          >
+            <ImageReveal
+              src={feature.image}
+              alt={feature.title}
+              className="absolute inset-0 h-full w-full"
+              radius="rounded-3xl"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-8">
+              <p className="text-[10px] font-bold tracking-[0.22em] text-orange-300">{feature.eyebrow}</p>
+              <h3 className="mt-2 text-2xl font-bold sm:text-3xl">{feature.title}</h3>
+              <p className="mt-2 max-w-md text-sm text-white/80">{feature.description}</p>
+            </div>
+          </motion.article>
+        ))}
+      </div>
+
+      <div className="mt-8 text-center">
+        <Link to="/shop" className="btn-sweep inline-flex rounded-full bg-orange-500 px-7 py-3 text-sm font-semibold text-white">
+          Explore the menu <span className="ml-2" aria-hidden="true">↗</span>
+        </Link>
+      </div>
+    </div>
+  </section>
+)
+
 export default SelectedShops

@@ -3,8 +3,6 @@ import { TbTruckDelivery } from 'react-icons/tb'
 import { Link } from 'react-router-dom'
 import HeroVisual from './hero/HeroVisual'
 import Magnetic from './ui/Magnetic'
-import appStore from '../assets/app_store.png'
-import playStore from '../assets/play_store.png'
 
 const HEADLINE = [
   { text: 'You' },
@@ -78,15 +76,6 @@ const Hero = () => {
                   Order Now
                 </Link>
               </Magnetic>
-            </motion.div>
-
-            <motion.div variants={fadeUp} className="flex items-center gap-2">
-              <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">
-                <img src={playStore} alt="Play Store" className="h-14 w-40" />
-              </a>
-              <a href="https://www.apple.com/app-store/" target="_blank" rel="noopener noreferrer">
-                <img src={appStore} alt="App Store" className="h-14 w-40" />
-              </a>
             </motion.div>
           </motion.div>
 

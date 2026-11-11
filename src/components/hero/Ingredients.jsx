@@ -23,14 +23,6 @@ export const TomatoSlice = ({ size = 46, className = '' }) => (
   </svg>
 )
 
-export const Olive = ({ size = 34, className = '' }) => (
-  <svg width={size} height={size} viewBox="0 0 40 40" className={className} aria-hidden="true">
-    <ellipse cx="20" cy="20" rx="16" ry="13" fill="#365314" />
-    <ellipse cx="20" cy="20" rx="9" ry="7" fill="#84cc16" opacity="0.55" />
-    <circle cx="20" cy="20" r="3.5" fill="#1a2e05" />
-  </svg>
-)
-
 export const Chilli = ({ size = 40, className = '' }) => (
   <svg width={size} height={size} viewBox="0 0 48 48" className={className} aria-hidden="true">
     <path
@@ -65,9 +57,6 @@ const IngredientField = ({ mx, my }) => (
     </Ingredient>
     <Ingredient mx={mx} my={my} depth={0.6} top="12%" left="78%" delay={0.8}>
       <TomatoSlice size={44} />
-    </Ingredient>
-    <Ingredient mx={mx} my={my} depth={0.9} top="72%" left="-2%" delay={0.4}>
-      <Olive size={32} />
     </Ingredient>
     <Ingredient mx={mx} my={my} depth={1.3} top="84%" left="82%" delay={0.6}>
       <Chilli size={42} />

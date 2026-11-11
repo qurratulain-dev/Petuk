@@ -18,7 +18,7 @@ const ShopCard = ({ item }) => {
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.35 }}
       whileHover={{ y: -6 }}
-      className="relative flex gap-4 rounded-lg bg-white px-5 py-6 shadow transition-shadow hover:shadow-lg"
+      className="relative flex min-w-0 gap-3 rounded-lg bg-white p-3 shadow transition-shadow hover:shadow-lg sm:gap-4 sm:px-5 sm:py-6"
     >
       <motion.button
         animate={{ scale: wishlisted ? [1, 1.4, 1] : 1 }}
@@ -31,7 +31,7 @@ const ShopCard = ({ item }) => {
         <AiFillHeart size={25} />
       </motion.button>
 
-      <div className="relative h-[130px] shrink-0 basis-[35%] overflow-hidden rounded-lg bg-zinc-100">
+      <div className="relative h-[130px] w-[34%] max-w-[130px] shrink-0 overflow-hidden rounded-lg bg-zinc-100 sm:w-[35%]">
         {!loaded && (
           <div className="skeleton-shimmer absolute inset-0" aria-hidden="true" />
         )}
@@ -44,9 +44,9 @@ const ShopCard = ({ item }) => {
         />
       </div>
 
-      <div className="basis-[65%]">
+      <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
-          <h2 className="text-lg font-bold text-gray-800">{item.name}</h2>
+          <h2 className="break-words text-base font-bold text-gray-800 sm:text-lg">{item.name}</h2>
         </div>
         <p className="flex items-center gap-1 text-xs text-amber-500">
           <AiFillStar /> {item.rating}

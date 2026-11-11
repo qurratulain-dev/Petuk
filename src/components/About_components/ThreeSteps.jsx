@@ -34,21 +34,21 @@ const FreshPizzaArray = [
     {
         id: 1,
         icon: <TbToolsKitchen2Off />,
-        countingIcon: <TbCircleNumber1Filled className='text-4xl absolute -top-4 -right-18' />,
+        countingIcon: <TbCircleNumber1Filled className='text-4xl absolute -top-3 -right-4' />,
         heading: "Choose your food",
         para: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, doloremque."
     },
     {
         id: 2,
         icon: <RiBillLine />,
-        countingIcon: <TbCircleNumber2Filled className='text-6xl absolute -top-8 -right-32' />,
+        countingIcon: <TbCircleNumber2Filled className='text-4xl absolute -top-3 -right-4' />,
         heading: "Pay your bill",
         para: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, doloremque."
     },
     {
         id: 3,
         icon: <TbTruckDelivery />,
-        countingIcon: <TbCircleNumber3Filled className='text-4xl absolute -top-4 -right-18' />,
+        countingIcon: <TbCircleNumber3Filled className='text-4xl absolute -top-3 -right-4' />,
         heading: "Get the delivery",
         para: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, doloremque."
     },

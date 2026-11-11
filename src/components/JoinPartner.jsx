@@ -12,7 +12,7 @@ const JoinPartner = () => {
         <section className='bg-[#fcfcfc]'>
             <div className='max-w-6xl mx-auto px-5 py-10 relative'>
                 <Heading title={"Join as Partner"}/>
-                <Stagger className='flex justify-center items-center gap-10 flex-col md:flex-row overflow-hidden'>
+                <Stagger className='flex justify-center items-center gap-10 flex-col md:flex-row'>
                     {
                         joinPartnerArray.map((item) => (
                             <StaggerItem key={item.id} whileHover={{ y: -8 }} className='bg-white shadow p-10 flex flex-col items-center justify-center text-center relative mt-16 mb-5'>

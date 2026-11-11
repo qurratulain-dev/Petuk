@@ -45,7 +45,7 @@ const WeeklyPizzaCard = ({ id, name, description, price, image }) => {
       viewport={{ once: true, margin: '-40px' }}
       whileHover={{ y: -8 }}
       transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-      className="relative flex max-w-xs flex-col items-center gap-3 rounded-xl bg-white px-4 py-5 shadow-lg transition-shadow hover:shadow-xl"
+      className="group relative flex max-w-xs flex-col items-center gap-3 rounded-xl bg-white px-4 py-5 ring-1 ring-zinc-100 shadow-lg transition-shadow duration-500 hover:shadow-2xl hover:shadow-orange-200/60 hover:ring-orange-200"
     >
       <motion.button
         whileTap={{ scale: 1.5 }}
@@ -67,11 +67,11 @@ const WeeklyPizzaCard = ({ id, name, description, price, image }) => {
           src={image}
           alt={name}
           data-cursor="Add"
-          className="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
+          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
         />
       </div>
 
-      <h2 className="text-center text-xl font-bold text-gray-800">{name}</h2>
+      <h2 className="text-center text-xl font-bold text-gray-800 transition-colors duration-300 group-hover:text-orange-500">{name}</h2>
       <p className="text-center text-sm text-gray-500">{description}</p>
       <p className="text-xl font-bold text-orange-500">{formatPrice(price)}</p>
       <AddToCart item={{ id, name, price, img: image }} className="justify-center" />

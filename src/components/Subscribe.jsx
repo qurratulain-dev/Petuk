@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import hero from '../assets/hero.webp'
 import ImageReveal from './ui/ImageReveal'
+import SectionHeading from './ui/SectionHeading'
 
 const Subscribe = () => {
     const [email, setEmail] = useState('')
@@ -30,9 +31,14 @@ const Subscribe = () => {
                     </motion.div>
                 </div>
                 <div className='w-full md:basis-[60%] flex flex-col justify-center p-2 sm:p-5 md:p-0'>
-                    <h2 className='text-3xl text-zinc-800 font-bold'>Subscribe For Pizza offer</h2>
-                    <p className='text-sm text-zinc-500 my-5'>Lorem ipsum dolor sit amet perspiciatis, facere nisi cupiditate iste laudantium? Repellat, modi minus. Incidunt.</p>
-                    <form onSubmit={handleSubmit} className='flex relative w-full md:w-[30vw] md:max-w-md'>
+                    <SectionHeading
+                        align="left"
+                        eyebrow="Stay hungry"
+                        title="Subscribe For Pizza Offers"
+                        subtitle="One email a week — the newest pizzas, member-only deals and a free side on your next order. No spam, just cheese."
+                        bars={false}
+                    />
+                    <form onSubmit={handleSubmit} className='flex relative w-full md:w-[30vw] md:max-w-md mt-6'>
                         <motion.input
                             animate={status === 'error' ? { x: [0, -8, 8, -6, 6, 0] } : { x: 0 }}
                             transition={{ duration: 0.4 }}

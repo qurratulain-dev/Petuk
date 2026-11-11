@@ -2,14 +2,10 @@ import cheese from '../assets/cheese.jpg'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import Magnetic from './ui/Magnetic'
+import SectionHeading from './ui/SectionHeading'
 
-const lineVariants = {
-  hidden: { y: '115%' },
-  show: { y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
-}
-
-// Avoid wrapping this section in a transformed element: the fixed background
-// relies on the section being the nearest scrolling context.
+// The fixed background gives this band its parallax feel, so the section must
+// stay free of transformed ancestors.
 const BestCheese = () => {
   const reduce = useReducedMotion()
 
@@ -18,33 +14,21 @@ const BestCheese = () => {
       className="bg-[#fcfcfc] bg-fixed"
       style={{ backgroundImage: `url(${cheese})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
     >
-      <div className="bg-black/35 px-5 py-24">
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
-          className="mx-auto max-w-2xl text-center text-white"
-        >
-          <h2 className="text-3xl font-bold sm:text-4xl">
-            {['Best Cheese Pizza available', 'in your town by Petuk'].map((line) => (
-              <span key={line} className="block overflow-hidden pb-1">
-                <motion.span variants={reduce ? undefined : lineVariants} className="inline-block">
-                  {line}
-                </motion.span>
-              </span>
-            ))}
-          </h2>
-          <motion.p
-            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
-            className="my-5 text-white/85"
-          >
-            Hand-stretched dough, slow-cooked tomato sauce and a generous blanket of mozzarella.
-            This is the slice your town keeps talking about.
-          </motion.p>
+      <div className="bg-black/40 px-5 py-24">
+        <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
+          <SectionHeading
+            theme="dark"
+            eyebrow="The town favourite"
+            title="Best Cheese Pizza in your town"
+            subtitle="Hand-stretched dough, slow-cooked tomato sauce and a generous blanket of mozzarella. This is the slice your town keeps talking about."
+          />
+
           <motion.div
-            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
-            className="inline-block"
+            initial={reduce ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
+            className="mt-8 inline-block"
           >
             <Magnetic>
               <Link
@@ -55,7 +39,7 @@ const BestCheese = () => {
               </Link>
             </Magnetic>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

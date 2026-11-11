@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import Heading from '../Heading'
+import SectionHeading from '../ui/SectionHeading'
 import deliveryboy from '../../assets/deliveryboy.avif'
 import { FREE_DELIVERY_THRESHOLD, formatPrice, getDeliveryFee } from '../../utils/format'
 import ImageReveal from '../ui/ImageReveal'
@@ -22,6 +22,8 @@ const FastestDelivery = () => {
                 className="h-[24rem] w-full rounded-[2rem] sm:h-[32rem]"
                 radius="rounded-[2rem]"
                 cursor="View"
+                parallax
+                parallaxStrength={40}
               />
               <motion.div
                 initial={reduce ? false : { opacity: 0, y: 18, rotate: -5 }}
@@ -37,11 +39,12 @@ const FastestDelivery = () => {
           </Reveal>
 
           <div className="pt-4 lg:pt-0">
-            <p className="mb-2 text-center text-xs font-bold uppercase tracking-[0.25em] text-orange-500 lg:text-left">Good food, no long wait</p>
-            <Heading title="Fast Delivery" />
-            <p className="mx-auto mt-2 max-w-lg text-center text-sm leading-7 text-zinc-600 lg:mx-0 lg:text-left sm:text-base">
-              Your favourites are made fresh, packed with care and sent straight to your door.
-            </p>
+            <SectionHeading
+              align="left"
+              eyebrow="Good food, no long wait"
+              title="Fast Delivery"
+              subtitle="Your favourites are made fresh, packed with care and sent straight to your door."
+            />
 
             <div className="mt-8 grid grid-cols-2 gap-3">
               <div className="rounded-2xl bg-white p-5 shadow-sm">

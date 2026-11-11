@@ -1,5 +1,5 @@
 import React from 'react';
-import Heading from '../Heading';
+import SectionHeading from '../ui/SectionHeading';
 import WeeklyPizzaCard from './WeeklyPizzaCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
@@ -48,7 +48,12 @@ const WeeklyPizzaCards = () => {
     return (
         <section className='bg-[#fcfcfc]'>
             <div className='max-w-6xl mx-auto px-5 py-10'>
-                <Heading title="Weekly Pizza Offer" />
+                <SectionHeading
+                    className="mb-4"
+                    eyebrow="This week only"
+                    title="Weekly Pizza Offer"
+                    subtitle="Handpicked favourites at a special price, baked fresh every single day."
+                />
 
                 <Swiper
                     modules={[Navigation]}

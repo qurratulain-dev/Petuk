@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Heading from '../Heading'
+import SectionHeading from '../ui/SectionHeading'
 import { TbCircleNumber1Filled, TbCircleNumber2Filled, TbCircleNumber3Filled, TbToolsKitchen2Off, TbTruckDelivery } from 'react-icons/tb'
 import { RiBillLine } from 'react-icons/ri'
 
@@ -80,7 +80,12 @@ const FreshPizza = () => {
   return (
     <section ref={sectionRef} className="bg-[#fcfcfc]">
       <div ref={pinRef} className="mx-auto max-w-6xl px-5 py-10">
-        <Heading title="Fresh Pizza. Delivered." />
+        <SectionHeading
+          className="mb-4"
+          eyebrow="How it works"
+          title="Fresh Pizza. Delivered."
+          subtitle="Three simple steps between you and a hot, cheesy box at your door."
+        />
         <div className="relative mt-8">
           <svg
             className="pointer-events-none absolute left-0 top-8 hidden h-24 w-full lg:block"
@@ -104,7 +109,7 @@ const FreshPizza = () => {
             {STEPS.map((step, index) => (
               <div
                 key={step.id}
-                className="fp-step relative flex flex-col items-center rounded-2xl bg-white px-6 py-10 text-center shadow-md transition-transform duration-300 hover:-translate-y-1"
+                className="fp-step relative flex flex-col items-center rounded-2xl bg-white px-6 py-10 text-center shadow-md ring-1 ring-zinc-100 transition-shadow duration-500 hover:shadow-xl hover:shadow-orange-200/50"
               >
                 <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-orange-50">
                   <span className="absolute -right-1 -top-1 text-3xl text-orange-200">{STEP_COUNTS[index]}</span>

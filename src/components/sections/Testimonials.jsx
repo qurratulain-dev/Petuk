@@ -2,7 +2,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import { AiFillStar } from 'react-icons/ai'
 import 'swiper/css'
-import Heading from '../Heading'
+import SectionHeading from '../ui/SectionHeading'
+import { Reveal } from '../motion/Reveal'
 import client from '../../assets/client.webp'
 
 const REVIEWS = [
@@ -39,8 +40,13 @@ const REVIEWS = [
 const Testimonials = () => (
   <section className="bg-[#f9f9f9]">
     <div className="mx-auto max-w-6xl px-5 py-14">
-      <Heading title="What our customers say" />
-      <div className="mt-8">
+      <SectionHeading
+        className="mb-6"
+        eyebrow="Real reviews"
+        title="What our customers say"
+        subtitle="Thousands of hot, happy deliveries and counting — here is what people are saying."
+      />
+      <Reveal className="mt-2">
         <Swiper
           modules={[Autoplay]}
           spaceBetween={24}
@@ -54,7 +60,7 @@ const Testimonials = () => (
         >
           {REVIEWS.map((review) => (
             <SwiperSlide key={review.id} className="h-auto py-4">
-              <div className="flex h-full flex-col rounded-2xl border border-zinc-100 bg-white p-6 shadow-md shadow-orange-100/30">
+              <div className="flex h-full flex-col rounded-2xl border border-zinc-100 bg-white p-6 shadow-md shadow-orange-100/30 transition-all duration-500 hover:-translate-y-1 hover:border-orange-100 hover:shadow-xl hover:shadow-orange-200/40">
                 <div className="flex gap-0.5 text-amber-400">
                   {Array.from({ length: 5 }, (_, index) => (
                     <AiFillStar key={index} className={index < review.rating ? '' : 'text-zinc-200'} />
@@ -77,7 +83,7 @@ const Testimonials = () => (
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
+      </Reveal>
     </div>
   </section>
 )

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { animate, motion, useInView, useReducedMotion } from 'framer-motion'
 import { TbTruckDelivery, TbPizza, TbStar, TbToolsKitchen2 } from 'react-icons/tb'
+import SectionHeading from '../ui/SectionHeading'
 
 const CountUp = ({ to, decimals = 0, suffix = '', prefix = '' }) => {
   const ref = useRef(null)
@@ -39,6 +40,13 @@ const STATS = [
 const Stats = () => (
   <section className="bg-[#fcfcfc]">
     <div className="mx-auto max-w-6xl px-5 py-14">
+      <SectionHeading
+        className="mb-10"
+        eyebrow="By the numbers"
+        title="Loved across the country"
+        subtitle="Hot boxes, happy customers and a kitchen that never stands still."
+      />
+
       <div className="grid grid-cols-2 gap-6 rounded-3xl bg-white p-8 shadow-lg shadow-orange-100/40 md:grid-cols-4">
         {STATS.map((stat, index) => (
           <motion.div
@@ -47,9 +55,12 @@ const Stats = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="flex flex-col items-center text-center"
+            whileHover={{ y: -6 }}
+            className="group flex flex-col items-center text-center"
           >
-            <span className="mb-2 text-2xl text-orange-500">{stat.icon}</span>
+            <span className="mb-2 text-2xl text-orange-500 transition-transform duration-300 group-hover:scale-110">
+              {stat.icon}
+            </span>
             <p className="text-2xl font-extrabold text-zinc-800 sm:text-3xl">
               <CountUp to={stat.to} decimals={stat.decimals} suffix={stat.suffix} />
             </p>

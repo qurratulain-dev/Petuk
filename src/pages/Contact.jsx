@@ -1,7 +1,7 @@
 import React from 'react'
 import Heading from '../components/Heading'
 import Form from '../components/Contact_components/Form'
-import ContactCards from '../components/Contact_components/contactCards'
+import ContactCards from '../components/Contact_components/ContactCards'
 
 const Contact = () => {
   return (
